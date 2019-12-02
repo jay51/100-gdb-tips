@@ -1,5 +1,5 @@
-# 打印所有线程的堆栈信息
-## 例子
+# Print stack information of all threads
+## Examples
 	#include <stdio.h>
 	#include <pthread.h>
 	#include <unistd.h>
@@ -24,8 +24,8 @@
 	        return 0;
 	}
 
-## 技巧
-gdb可以使用“`thread apply all bt`”命令打印所有线程的堆栈信息。以上面程序为例:
+## Tips
+gdb can use the &quot;` thread apply all bt` &quot;command to print the stack information of all threads. Take the above program as an example:
 
     (gdb) thread apply all bt
 
@@ -49,7 +49,7 @@ gdb可以使用“`thread apply all bt`”命令打印所有线程的堆栈信�
     #2  0x08048547 in main ()
     #0  0xb7dcc96c in __gxx_personality_v0 () from /lib/libc.so.6
 
-可以看到，使用“`thread apply all bt`”命令以后，会对所有的线程实施backtrace命令。`thread apply [thread-id-list] [all] args` 也可以对指定的线程ID列表进行执行：
+It can be seen that after using the `thread apply all bt` command, the backtrace command will be implemented on all threads. `thread apply [thread-id-list] [all] args` can also execute the specified thread ID list:
 
     (gdb) thread apply 1-2 bt
 
@@ -66,8 +66,8 @@ gdb可以使用“`thread apply all bt`”命令打印所有线程的堆栈信�
     #4  0xb7e007fe in clone () from /lib/libc.so.6
     #0  0xb7dcc96c in __gxx_personality_v0 () from /lib/libc.so.6
 
-`thread apply`更多用法和`thread-id-list`的格式用法参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
+For more usage of `thread apply` and format usage of` thread-id-list`, see [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
 
-## 贡献者
+## Contributor
 
 panzhongxian
