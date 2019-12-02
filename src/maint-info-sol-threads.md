@@ -1,10 +1,10 @@
-# 在Solaris上使用maintenance命令查看线程信息
+# View the thread information using the maintenance command on Solaris
 
 
 
 
-## 技巧
-用gdb调试多线程程序时，如果想查看线程信息，可以使用“i threads”命令（i是info命令缩写），例如:  
+## Tips
+When debugging multithreaded programs with gdb, if you want to view the thread information, you can use the &quot;i threads&quot; command (i is the abbreviation of the info command), for example:
 
 	(gdb) i threads
     106 process 2689429      0xff04af84 in __lwp_park () from /lib/libc.so.1
@@ -14,7 +14,7 @@
 
 
 
-在Solaris操作系统上，gdb为Solaris量身定做了一个查看线程信息的命令：“maint info sol-threads”（maint是maintenance命令缩写），例如:
+On the Solaris operating system, gdb tailored a command for viewing thread information for Solaris: &quot;maint info sol-threads&quot; (maint is the abbreviation of the maintenance command), for example:
 
 	(gdb) maint info sol-threads
 	user   thread #1, lwp 1, (active)
@@ -23,11 +23,11 @@
     - Sleep func: 0x000aa32c
 
 
-可以看到相比于info命令，maintenance命令显示了更多信息。例如线程当前状态（active，asleep），入口函数（startfunc）等。
+You can see that the maintenance command shows more information than the info command. For example, the current state of the thread (active, asleep), entry function (startfunc), etc.
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html)
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Threads.html)
 
-## 贡献者
+## Contributor
 
 nanxiao
 

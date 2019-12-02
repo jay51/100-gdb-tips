@@ -1,5 +1,5 @@
-# 打印函数堆栈帧信息
-## 例子
+# Print function stack frame information
+## Examples
 	#include <stdio.h>
 	int func(int a, int b)
 	{
@@ -15,8 +15,8 @@
 
 
 
-## 技巧
-使用gdb调试程序时，可以使用“`i frame`”命令（`i`是`info`命令缩写）显示函数堆栈帧信息。以上面程序为例：  
+## Tips
+When using gdb to debug a program, you can use the `i frame` command (` i` is the abbreviation of the `info` command) to display function stack frame information. Take the above program as an example:
  
 	Breakpoint 1, func (a=1, b=2) at a.c:5
 	5               printf("c is %d\n", c);
@@ -73,9 +73,9 @@
 	   0x0000000000400563 <+45>:    retq
 	End of assembler dump.
 
-可以看到执行“`i frame`”命令后，输出了当前函数堆栈帧的地址，指令寄存器的值，局部变量地址及值等信息，可以对照当前寄存器的值和函数的汇编指令看一下。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Frame-Info.html).
+You can see that after executing the “i frame`” command, the information of the current function stack frame address, the value of the instruction register, the address of the local variable, and the value are output. You can look at the current register value and the function&#39;s assembly instruction.
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Frame-Info.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

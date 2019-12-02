@@ -1,6 +1,6 @@
-# 打印变量的类型和所在文件 
+# Print the type and file of the variable
 
-## 例子
+## Examples
 
 	#include <stdio.h>
 	
@@ -19,14 +19,14 @@
 	  return 0;
 	}
 
-## 技巧
+## Tips
 
-在gdb中，可以使用如下命令查看变量的类型：
+In gdb, you can use the following command to view the type of the variable:
 
 	(gdb) whatis he
 	type = struct child
 
-如果想查看详细的类型信息：
+If you want to see detailed type information:
 
 	(gdb) ptype he
 	type = struct child {
@@ -34,7 +34,7 @@
 	    enum {boy, girl} gender;
 	}
 
-如果想查看定义该变量的文件：
+If you want to see the file that defines the variable:
 
 	(gdb) i variables he
 	All variables matching regular expression "he":
@@ -46,7 +46,7 @@
 	0x0000000000402030  she
 	0x00007ffff7dd3380  __check_rhosts_file
 
-哦，gdb会显示所有包含（匹配）该表达式的变量。如果只想查看完全匹配给定名字的变量：
+Oh, gdb will show all variables that contain (match) the expression. If you only want to see variables that exactly match the given name:
 
 	(gdb) i variables ^he$
 	All variables matching regular expression "^he$":
@@ -54,11 +54,11 @@
 	File variable.c:
 	struct child he;
 
-注：`info variables`不会显示局部变量，即使是static的也没有太多的信息。
+Note: `info variables` does not display local variables, even static ones do not have much information.
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Symbols.html)
+See [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Symbols.html)
 
-## 贡献者
+## Contributor
 
 xmj
 

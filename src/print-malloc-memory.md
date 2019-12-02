@@ -1,5 +1,5 @@
-# 打印程序动态分配内存的信息
-## 例子
+# Print the information of the program dynamically allocated memory
+## Examples
 	#include <stdio.h>
 	#include <malloc.h>
 	
@@ -15,8 +15,8 @@
 	        return 0;
 	}
 
-## 技巧
-用gdb调试程序时，可以用下面的自定义命令，打印程序动态分配内存的信息：  
+## Tips
+When debugging a program with gdb, you can use the following custom command to print information about the program&#39;s dynamic allocation of memory:
 
     define mallocinfo
       set $__f = fopen("/dev/tty", "w")
@@ -24,7 +24,7 @@
       call fclose($__f)
     end
 
-以上面程序为例：  
+Take the above program as an example:
 
     Temporary breakpoint 5, main () at a.c:7
 	7               int i = 0;
@@ -134,9 +134,10 @@
 	$24 = 0
 	$25 = 0
 
-可以看到gdb输出了动态分配内存的变化信息。   
+You can see that gdb outputs information about changes in dynamically allocated memory.
 参见[stackoverflow](http://stackoverflow.com/questions/1471226/most-tricky-useful-commands-for-gdb-debugger).
 
-## 贡献者
+
+## Contributor
 
 nanxiao

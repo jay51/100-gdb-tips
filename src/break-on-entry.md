@@ -1,8 +1,8 @@
-# 在程序入口处打断点 
+# Break point at program entry
 
-## 获取程序入口
+## Get program entry
 
-### 方法一：
+### method one:
 
 	$ strip a.out
 	$ readelf -h a.out 
@@ -27,7 +27,7 @@
 	  Number of section headers:         29
 	  Section header string table index: 28
 
-### 方法二：
+### Method Two:
 
     $ gdb a.out 
     >>> info files
@@ -61,19 +61,19 @@
     	0x0000000000601030 - 0x0000000000601040 is .data
     	0x0000000000601040 - 0x0000000000601048 is .bss
 
-## 技巧
+## Tips
 
-当调试没有调试信息的程序时，直接运行`start`命令是没有效果的：
+When debugging a program without debugging information, running the `start` command directly has no effect:
 
 	(gdb) start
 	Function "main" not defined.
 
-如果不知道main在何处，那么可以在程序入口处打断点。先通过`readelf`或者进入gdb，执行`info files`获得入口地址，然后：
+If you don&#39;t know where main is, you can break the entry point at the program entry. First go to `readelf` or enter gdb, execute` info files` to get the entry address, then:
 
 	(gdb) b *0x400440
 	(gdb) r
 
-## 贡献者
+## Contributor
 
 * xmj
 * [weekface](https://github.com/weekface)

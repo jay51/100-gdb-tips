@@ -1,5 +1,5 @@
-# 显示寄存器窗口
-## 例子
+# Show register window
+## Examples
 	#include <stdio.h>
 	
 	void fun1(void)
@@ -28,8 +28,8 @@
 	}
 
 
-## 技巧
-使用gdb图形化调试界面时，可以使用“`layout regs`”命令显示寄存器窗口。以调试上面程序为例：  
+## Tips
+When using the gdb graphical debugging interface, you can use the &quot;` layout regs` &quot;command to display the register window. Take debugging the above program as an example:
 
 	┌──Register group: general─────────────────────────────────────────────────────────────────────────┐
 	│rax            0x34e4590f60     227169341280     rbx            0x0      0                        │
@@ -58,8 +58,8 @@
 	Temporary breakpoint 1, main () at a.c:24
 	(gdb)
 
-可以看到，显示了通用寄存器的内容。  
-如果想查看浮点寄存器，可以使用“`tui reg float`”命令：  
+As you can see, the contents of the general-purpose registers are displayed.
+If you want to view floating-point registers, you can use the `` tui reg float` command:
 
 	┌──Register group: float───────────────────────────────────────────────────────────────────────────┐
 	│st0            0        (raw 0x00000000000000000000)                                              │
@@ -86,7 +86,7 @@
 	Temporary breakpoint 1, main () at a.c:24
 	(gdb) tui reg float
 
-“`tui reg system`”命令显示系统寄存器：  
+The &quot;` tui reg system` &quot;command displays the system registers:
 
 	┌──Register group: system──────────────────────────────────────────────────────────────────────────┐
 	│orig_rax       0xffffffffffffffff       -1                                                        │
@@ -111,7 +111,7 @@
 	Temporary breakpoint 1, main () at a.c:24
 	(gdb) tui reg system
 	(gdb)
-想切换回显示通用寄存器内容，可以使用“`tui reg general`”命令：  
+To switch back to displaying the contents of general registers, you can use the &quot;` tui reg general` &quot;command:
 
 	┌──Register group: general─────────────────────────────────────────────────────────────────────────┐
 	│rax            0x34e4590f60     227169341280     rbx            0x0      0                        │
@@ -135,8 +135,8 @@
 	(gdb) tui reg general
 	(gdb)
   
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/TUI-Commands.html).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/TUI-Commands.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

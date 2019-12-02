@@ -1,49 +1,54 @@
-# 忽略断点 
+# Ignore breakpoints
 
-## 例子
+## example
 
-	#include <stdio.h>
-		
-	int main(void)
-	{
-	        int i = 0;
-			int sum = 0;
+```
+#include <stdio.h>
 
-			for (i = 1; i <= 200; i++)
-			{
-				sum += i;
-			}
-		
-			printf("%d\n", sum);
-	        return 0;
-	}
+int main(void)
+{
+int i u003d 0;
+int sum u003d 0;
+
+for (i u003d 1; i <u003d 200; i++)
+{
+sum +u003d i;
+}
+
+printf("%d\n", sum);
+return 0;
+}
+
+```
+
+## Tips
+
+After setting the breakpoint, you can ignore the breakpoint. The command is "`ignore bnum count`": meaning that the next `count` breakpoint trigger with `bnum` will not interrupt the program, only the `count + The 1` breakpoint trigger will interrupt the program. Take the above program as an example:
+
+```
+(gdb) b 10
+Breakpoint 1 at 0x4004e3: file a.c, line 10.
+(gdb) ignore 1 5
+Will ignore next 5 crossings of breakpoint 1.
+(gdb) r
+Starting program: /data2/home/nanxiao/a
+
+Breakpoint 1, main () at a.c:10
+10                                      sum +u003d i;
+(gdb) p i
+$1 u003d 6
+```
 
 
+You can see that after setting the 5th trigger before ignoring the breakpoint, the value of the printed `i` is `6` when the first breakpoint is hit.
+If you want the breakpoint to take effect next time, you can set `count` to `0`: "`ignore 1 0`".
 
-## 技巧
+See the [gdb manual](https://sourceware.org/gdb/onlinedocs/gdb/Conditions.html)for details
 
-在设置断点以后，可以忽略断点，命令是“`ignore bnum count`”：意思是接下来`count`次编号为`bnum`的断点触发都不会让程序中断，只有第`count + 1`次断点触发才会让程序中断。以上面程序为例：
+## Contributors
 
-	(gdb) b 10
-	Breakpoint 1 at 0x4004e3: file a.c, line 10.
-	(gdb) ignore 1 5
-	Will ignore next 5 crossings of breakpoint 1.
-	(gdb) r
-	Starting program: /data2/home/nanxiao/a
-	
-	Breakpoint 1, main () at a.c:10
-	10                                      sum += i;
-	(gdb) p i
-	$1 = 6
+nanxiao (translate to Boys School)
 
-
-可以看到设定忽略断点前`5`次触发后，第一次断点断住时，打印`i`的值是`6`。如果想让断点下次就生效，可以将`count`置为`0`：“`ignore 1 0`”。
-
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Conditions.html)
-
-## 贡献者
-
-nanxiao
 
 
 

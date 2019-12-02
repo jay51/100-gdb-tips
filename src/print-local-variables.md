@@ -1,103 +1,104 @@
-# 打印函数局部变量的值 
+#Print the value of a function local variable
 
-## 例子
+##example
 
-	#include <stdio.h>
+```
+#include <stdio.h>
 
-	void fun_a(void)
-	{
-		int a = 0;
-		printf("%d\n", a);
-	}
-	
-	void fun_b(void)
-	{
-		int b = 1;
-		fun_a();
-		printf("%d\n", b);
-	}
-	
-	void fun_c(void)
-	{
-		int c = 2;
-		fun_b();
-		printf("%d\n", c);
-	}
-	
-	void fun_d(void)
-	{
-		int d = 3;
-		fun_c();
-		printf("%d\n", d);
-	}
-	
-	int main(void)
-	{
-		int var = -1;
-		fun_d();
-		return 0;
-	}
+Void fun_a(void) {
+Int a = 0;
+Printf("%d\n", a);
+}
 
-## 技巧一
+Void fun_b(void) {
+Int b = 1;
+Fun_a();
+Printf("%d\n", b);
+}
 
-如果要打印函数局部变量的值，可以使用“bt full”命令（bt是backtrace的缩写）。首先我们在函数fun_a里打上断点，当程序断住时，显示调用栈信息：
+Void fun_c(void) {
+Int c = 2;
+Fun_b();
+Printf("%d\n", c);
+}
 
-	(gdb) bt
-	#0  fun_a () at a.c:6
-	#1  0x000109b0 in fun_b () at a.c:12
-	#2  0x000109e4 in fun_c () at a.c:19
-	#3  0x00010a18 in fun_d () at a.c:26
-	#4  0x00010a4c in main () at a.c:33
+Void fun_d(void) {
+Int d = 3;
+Fun_c();
+Printf("%d\n", d);
+}
 
+Int main(void) {
+Int var = -1;
+Fun_d();
+Return 0;
+}
+```
 
-接下来，用“bt full”命令显示各个函数的局部变量值：
+##Tip 1
 
-	(gdb) bt full
-	#0  fun_a () at a.c:6
-	        a = 0
-	#1  0x000109b0 in fun_b () at a.c:12
-	        b = 1
-	#2  0x000109e4 in fun_c () at a.c:19
-	        c = 2
-	#3  0x00010a18 in fun_d () at a.c:26
-	        d = 3
-	#4  0x00010a4c in main () at a.c:33
-	        var = -1
+If you want to print the value of a function local variable, you can use the "bt full" command (bt is an abbreviation for backtrace). First we put a breakpoint in the function fun_a, when the program is interrupted, the call stack information is displayed:
 
+```
+(gdb) bt
+#0 fun_a () at a.c:6
+#1 0x000109b0 in fun_b () at a.c:12
+#2 0x000109e4 in fun_c () at a.c:19
+#3 0x00010a18 in fun_d () at a.c:26
+#4 0x00010a4c in main () at a.c:33
+```
 
-也可以使用如下“bt full n”，意思是从内向外显示n个栈桢，及其局部变量，例如：
+Next, use the "bt full" command to display the local variable values ​​for each function:
 
-	(gdb) bt full 2
-	#0  fun_a () at a.c:6
-	        a = 0
-	#1  0x000109b0 in fun_b () at a.c:12
-	        b = 1
-	(More stack frames follow...)
+```
+(gdb) bt full
+#0 fun_a () at a.c:6
+a = 0
+#1 0x000109b0 in fun_b () at a.c:12
+b = 1
+#2 0x000109e4 in fun_c () at a.c:19
+c = 2
+#3 0x00010a18 in fun_d () at a.c:26
+d = 3
+#4 0x00010a4c in main () at a.c:33
+Var = -1
+```
 
+You can also use the following "bt full n", which means that n stacks are displayed from the inside out, and their local variables, for example:
 
-而“bt full -n”，意思是从外向内显示n个栈桢，及其局部变量，例如：
+```
+(gdb) bt full 2
+#0 fun_a () at a.c:6
+a = 0
+#1 0x000109b0 in fun_b () at a.c:12
+b = 1
+(More stack frames follow...)
+```
 
-	(gdb) bt full -2
-	#3  0x00010a18 in fun_d () at a.c:26
-	        d = 3
-	#4  0x00010a4c in main () at a.c:33
-	        var = -1
+And "bt full -n" means to display n stacks from the outside to the inside, and their local variables, for example:
 
+```
+(gdb) bt full -2
+#3 0x00010a18 in fun_d () at a.c:26
+d = 3
+#4 0x00010a4c in main () at a.c:33
+Var = -1
+```
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html)
+See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Backtrace.html)for details 
 
-## 技巧二
+##Tip 2
 
-如果只是想打印当前函数局部变量的值，可以使用如下命令：
+If you just want to print the value of the current function local variable, you can use the following command:
 
-	(gdb) info locals
-	a = 0
+```
+(gdb) info locals
+a = 0
+```
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Frame-Info.html#index-info-locals)
+See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Frame-Info.html#index-info-locals)for details 
 
-## 贡献者
+##Contributors
 
-nanxiao
-
-xmj
-
+Nanxiao
+Xmj

@@ -1,5 +1,5 @@
-# 一个gdb会话中同时调试多个程序
-## 例子
+# Debug multiple programs simultaneously in one gdb session
+## Examples
 	a.c:
 	#include <stdio.h>
 	int func(int a, int b)
@@ -44,8 +44,8 @@
 	}
 
 
-## 技巧
-gdb支持在一个会话中同时调试多个程序。以上面程序为例，首先调试`a`程序：  
+## Tips
+gdb supports debugging multiple programs simultaneously in one session. Take the above program as an example, first debug the `a` program:
 
 	root@bash:~$ gdb a
 	GNU gdb (Ubuntu 7.7-0ubuntu3) 7.7
@@ -67,7 +67,7 @@ gdb支持在一个会话中同时调试多个程序。以上面程序为例，�
 	Temporary breakpoint 1 at 0x400568: file a.c, line 10.
 	Starting program: /home/nanxiao/a
 
-接着使用“`add-inferior [ -copies n ] [ -exec executable ]`”命令加载可执行文件`b`。其中`n`默认为1：  
+Then use the &quot;` add-inferior [-copies n] [-exec executable] `&quot; command to load the executable `b`. Where `n` defaults to 1:
 
 	(gdb) add-inferior -copies 2 -exec b
 	Added inferior 2
@@ -92,9 +92,9 @@ gdb支持在一个会话中同时调试多个程序。以上面程序为例，�
 	  3    <null>            /home/nanxiao/b
 	* 2    process 1590      /home/nanxiao/b
 	  1    process 1586      /home/nanxiao/a
-可以看到可以调试`b`程序了。
+You can see that you can debug the `b` program.
 
-另外也可用“`clone-inferior [ -copies n ] [ infno ]`”克隆现有的`inferior`，其中`n`默认为1，`infno`默认为当前的`inferior`：  
+You can also use &quot;` clone-inferior [-copies n] [infno] &quot;&quot; to clone an existing `inferior`, where` n` defaults to 1, and `infno` defaults to the current` inferior`:
 
 	(gdb) i inferiors
 	  Num  Description       Executable
@@ -109,10 +109,10 @@ gdb支持在一个会话中同时调试多个程序。以上面程序为例，�
 	  3    <null>            /home/nanxiao/b
 	* 2    process 1590      /home/nanxiao/b
 	  1    process 1586      /home/nanxiao/a
-可以看到又多了一个`b`程序。
+You can see that there is another `b` program.
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-and-Programs.html).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-and-Programs.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

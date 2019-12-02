@@ -1,5 +1,5 @@
-# 调整窗口大小
-## 例子
+# Resize window
+## Examples
 	#include <stdio.h>
 	
 	void fun1(void)
@@ -28,8 +28,8 @@
 	}
 
 
-## 技巧
-使用gdb图形化调试界面时，可以使用“`winheight  <win_name> [+ | -]count`”命令调整窗口大小（`winheight`缩写为`win`。`win_name`可以是`src`、`cmd`、`asm`和`regs`）。以调试上面程序为例，这是原始的`src`窗口大小：  
+## Tips
+When using the gdb graphical debugging interface, you can use &quot;` winheight <win_name> [+ |-] count` ”to adjust the window size (` winheight` is abbreviated as `win`.` win_name` can be `src`,` cmd`, `asm`, and` regs`). Take debugging the above program as an example This is the original `src` window size:
 
 	   ┌──a.c──────────────────────────────────────────────────────────────────────────────────────────┐
 	   │17              j++;                                                                           │
@@ -57,7 +57,7 @@
 	
 	Temporary breakpoint 1, main () at a.c:24
 
-执行“`winheight src -5`”命令后：
+After executing the &quot;` winheight src -5` &quot;command:
 
 	   ┌──a.c──────────────────────────────────────────────────────────────────────────────────────────┐
 	   │17              j++;                                                                           │
@@ -75,8 +75,8 @@
 	native process 9667 In: main                                               Line: 24   PC: 0x40052b
 	Usage: winheight <win_name> [+ | -] <#lines>
 	(gdb)
-可以看到窗口变小了。  
-接着执行“`winheight src +5`”命令：  
+You can see that the window has become smaller.
+Then execute the &quot;` winheight src + 5` &quot;command:
 
 	   ┌──a.c──────────────────────────────────────────────────────────────────────────────────────────┐
 	   │17              j++;                                                                           │
@@ -99,9 +99,9 @@
 	native process 9667 In: main                                               Line: 24   PC: 0x40052b
 	Usage: winheight <win_name> [+ | -] <#lines>
 	(gdb)
-可以看到窗口恢复了原样。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/TUI-Commands.html).
+You can see that the window is restored.
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/TUI-Commands.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

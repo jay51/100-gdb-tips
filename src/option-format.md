@@ -1,20 +1,23 @@
-# 命令行选项的格式
+#Command line option format
 
-## 技巧
+##Tips
 
-gdb的帮助信息和在线文档对于长选项的形式使用了不同的风格。你可能有点迷惑，gdb的长选项究竟应该是“-”，还是“--”？
+Gdb's help information and online documentation use different styles for long options. You may be a bit confused, should gdb's long option be "-" or "--"?
 
-是的，这两种方式都可以。例如：
+Yes, both methods are fine. E.g:
 
-	$ gdb -help
-	$ gdb --help
+```
+$ gdb -help
+$ gdb --help
 
-	$ gdb -args ./a.out a b c
-	$ gdb --args ./a.out a b c
+$ gdb -args ./a.out a b c
+$ gdb --args ./a.out a b c
 
-好吧，使用短的。
+Ok, use short ones.
+```
 
-## 贡献者
+##Contributors
 
-xmj
+Xmj
+
 

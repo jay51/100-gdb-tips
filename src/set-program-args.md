@@ -1,35 +1,41 @@
-# 设置被调试程序的参数
+#Set the parameters of the program being debugged
 
-## 技巧
+##Tips
 
-可以在gdb启动时，通过选项指定被调试程序的参数，例如：
+You can specify the parameters of the program being debugged by the option when gdb starts, for example:
 
-	$ gdb -args ./a.out a b c
+```
+$ gdb -args ./a.out a b c
 
-也可以在gdb中，通过命令来设置，例如：
+It can also be set in gdb by command, for example:
 
-	(gdb) set args a b c
-	(gdb) show args
-	Argument list to give program being debugged when it is started is "a b c".
+(gdb) set args a b c
+(gdb) show args
+Argument list to give program being debugged when it is started is "a b c".
+```
 
-也可以在运行程序时，直接指定：
+You can also specify directly when you run the program:
 
-	(gdb) r a b
-	Starting program: /home/xmj/tmp/a.out a b
-	(gdb) show args
-	Argument list to give program being debugged when it is started is "a b".
-	(gdb) r
-	Starting program: /home/xmj/tmp/a.out a b 
+```
+(gdb) r a b
+Starting program: /home/xmj/tmp/a.out a b
+(gdb) show args
+Argument list to give program being debugged when it is started is "a b".
+(gdb) r
+Starting program: /home/xmj/tmp/a.out a b
+```
 
-可以看出，参数已经被保存了，下次运行时直接运行`run`命令，即可。
+It can be seen that the parameters have been saved, and the `run` command can be run directly at the next run.
 
-有意的是，如果我接下来，想让参数为空，该怎么办？是的，直接：
+```
+Interestedly, what if I want to leave the parameters empty? Yes, directly:
 
-	(gdb) set args
+(gdb) set args
+```
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Arguments.html#Arguments)
+See the [gdb manual](https://sourceware.org/gdb/onlinedocs/gdb/Arguments.html#Arguments) for details
 
-## 贡献者
+##Contributors
 
-xmj
+Xmj
 

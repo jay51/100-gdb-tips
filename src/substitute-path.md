@@ -1,48 +1,52 @@
-# 替换查找源文件的目录
-## 例子
-	#include <stdio.h>
-	#include <time.h>
-	
-	int main(void) {
-	        time_t now = time(NULL);
-	        struct tm local = {0};
-	        struct tm gmt = {0};
-	
-	        localtime_r(&now, &local);
-	        gmtime_r(&now, &gmt);
-	
-	        return 0;
-	}
+#Replace the directory where the source files are found
 
+##example
 
+```
+#include <stdio.h>
+#include <time.h>
 
+Int main(void) {
+Time_t now = time(NULL);
+Struct tm local = {0};
+Struct tm gmt = {0};
 
-## 技巧
-有时调试程序时，源代码文件可能已经移到其它的文件夹了。此时可以用`set substitute-path from to`命令设置新的文件夹（`to`）目录替换旧的（`from`）。以上面程序为例：  
+Localtime_r(&now, &local);
+Gmtime_r(&now, &gmt);
 
-	(gdb) start
-	Temporary breakpoint 1 at 0x400560: file a.c, line 5.
-	Starting program: /home/nan/a
+Return 0;
+}
+```
 
-	Temporary breakpoint 1, main () at a.c:5
-	5       a.c: No such file or directory.
-	(gdb) set substitute-path /home/nan /home/ki
-	(gdb) n
-	6                       struct tm local = {0};
-	(gdb)
-	7                       struct tm gmt = {0};
-	(gdb)
-	9                       localtime_r(&now, &local);
-	(gdb)
-	10                      gmtime_r(&now, &gmt);
-	(gdb)
-	12                      return 0;
+##Tips
 
+Sometimes when debugging a program, the source code file may have been moved to another folder. At this point you can use the `set substitute-path from to` command to set the new folder (`to`) directory to replace the old one (`from`). Take the above program as an example:
 
+```
+(gdb) start
+Temporary breakpoint 1 at 0x400560: file a.c, line 5.
+Starting program: /home/nan/a
 
-调试时，因为源文件已经移到`/home/ki`这个文件夹下了，所以gdb找不到源文件。使用`set substitute-path /home/nan /home/ki`命令设置源文件的查找目录后，gdb就可以正常地解析源代码了。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Source-Path.html).
+Temporary breakpoint 1, main () at a.c:5
+5 a.c: No such file or directory.
+(gdb) set substitute-path /home/nan /home/ki
+(gdb) n
+6 struct tm local = {0};
+(gdb)
+7 struct tm gmt = {0};
+(gdb)
+9 localtime_r(&now, &local);
+(gdb)
+10 gmtime_r(&now, &gmt);
+(gdb)
+12 return 0;
+```
 
-## 贡献者
+When debugging, because the source file has been moved to the `/home/ki` folder, gdb cannot find the source file. After using the `set substitute-path /home/nan /home/ki` command to set the lookup directory of the source file, gdb can parse the source code normally.
 
-nanxiao
+See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Source-Path.html).
+
+##Contributors
+
+Nanxiao
+

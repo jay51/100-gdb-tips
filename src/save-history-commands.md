@@ -1,25 +1,27 @@
-# 保存历史命令
+#Save history command
 
-## 技巧
+##Tips
 
-在gdb中，缺省是不保存历史命令的。你可以通过如下命令来设置成保存历史命令：
+In gdb, the default is to not save history commands. You can set the save history command with the following command:
 
-	(gdb) set history save on
+```
+(gdb) set history save on
 
-但是，历史命令是缺省保存在了当前目录下的.gdb_history文件中。可以通过如下命令来设置要保存的文件名和路径：
+However, the history command is saved by default in the .gdb_history file in the current directory. You can set the file name and path to save by the following command:
 
-	(gdb) set history filename fname
+(gdb) set history filename fname
 
-现在，我们把这两个命令放到$HOME/.gdbinit文件中：
+Now let's put these two commands in the $HOME/.gdbinit file:
 
-	set history filename ~/.gdb_history
-	set history save on
+Set history filename ~/.gdb_history
+Set history save on
 
-好了，下次启动gdb时，你就可以直接查找使用之前的历史命令了。
+Ok, the next time you start gdb, you can directly find the history commands before using it.
+```
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Command-History.html#Command-History)
+See the [gdb manual](https://sourceware.org/gdb/onlinedocs/gdb/Command-History.html#Command-History) for details
 
-## 贡献者
+##Contributors
 
-xmj
+Xmj
 

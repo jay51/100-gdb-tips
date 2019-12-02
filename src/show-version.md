@@ -1,8 +1,8 @@
-# 显示gdb版本信息
+# Display gdb version information
 
 
-## 技巧
-使用gdb时，如果想查看gdb版本信息，可以使用“`show version`”命令:  
+## Tips
+When using gdb, if you want to view the gdb version information, you can use the `show version` command:
 
 	(gdb) show version
 	GNU gdb (GDB) 7.7.1
@@ -20,9 +20,9 @@
 	For help, type "help".
 	Type "apropos word" to search for commands related to "word".
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Help.html#index-GDB-version-number)。
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Help.html#index-GDB-version-number).
 
-## 贡献者
+## Contributor
 
 nanxiao
 

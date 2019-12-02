@@ -1,5 +1,5 @@
-# 使用“$_siginfo”变量
-## 例子
+# Use &quot;$ _siginfo&quot; variable
+## Examples
 	#include <stdio.h>
 	#include <signal.h>
 	
@@ -21,8 +21,8 @@
 	        return 0;
 	}
 
-## 技巧
-在某些平台上（比如Linux）使用gdb调试程序，当有信号发生时，gdb在把信号丢给程序之前，可以通过`$_siginfo`变量读取一些额外的有关当前信号的信息，这些信息是`kernel`传给信号处理函数的。以上面程序为例:  
+## Tips
+On some platforms (such as Linux), use gdb to debug the program. When a signal occurs, gdb can read some additional information about the current signal through the `$ _siginfo` variable before throwing the signal to the program. The information is `kernel` is passed to the signal handler. Take the above program as an example:
 
 	Program received signal SIGHUP, Hangup.
 	0x00000034e42accc0 in __nanosleep_nocancel () from /lib64/libc.so.6
@@ -49,11 +49,11 @@
 	(gdb) p $_siginfo._sifields._sigfault.si_addr
 	$1 = (void *) 0x850e
 
-我们可以了解`$_siginfo`变量里每个成员的类型，并且可以读到成员的值。
+We can understand the type of each member in the `$ _siginfo` variable, and we can read the value of the member.
 
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Signaling.html#Signaling).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Signaling.html#Signaling).
 
-## 贡献者
+## Contributor
 
 nanxiao

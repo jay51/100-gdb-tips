@@ -1,6 +1,6 @@
-# 自动反汇编后面要执行的代码
+# Automatically disassemble the code to be executed later
 
-## 例子
+## Examples
     (gdb) set disassemble-next-line on
     (gdb) start 
     The program being debugged has been started already.
@@ -36,20 +36,20 @@
     0x0000000000400416 in puts@plt ()
     => 0x0000000000400416 <puts@plt+6>: 68 00 00 00 00  pushq  $0x0
 
-## 技巧
+## Tips
 
-如果要在任意情况下反汇编后面要执行的代码：
+If you want to disassemble the code to be executed in any case:
 
     (gdb) set disassemble-next-line on
 
-如果要在后面的代码没有源码的情况下才反汇编后面要执行的代码：
+If you want to disassemble the code to be executed later without the source code:
 
     (gdb) set disassemble-next-line auto
 
-关闭这个功能：
+Turn off this feature:
 
     (gdb) set disassemble-next-line off
 
-## 贡献者
+## Contributor
 
 teawater

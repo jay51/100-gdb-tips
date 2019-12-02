@@ -1,24 +1,27 @@
-# 在gdb中执行shell命令和make
+# Execute shell commands and make in gdb
 
-## 技巧
+## Tips
 
-你可以不离开gdb，直接执行shell命令，比如：
+You can execute shell commands directly without leaving gdb, such as:
 
-	(gdb) shell ls
+```
+(gdb) shell ls
 
-或
+or
 
-	(gdb) !ls
+(gdb) !ls
+```
 
-这里，"!"和命令之间不需要有空格（即，有也成）。
+Here, there is no need for spaces between the "!" and the command (ie, there are also).
 
-特别是当你在构建环境(build目录)下调试程序的时候，可以直接运行make：
+Especially when you debug the program in the build environment (build directory), you can run make directly:
 
-	(gdb) make CFLAGS="-g -O0"
+(gdb) make CFLAGS="-g -O0"
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Shell-Commands.html#Shell-Commands)
+See the [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Shell-Commands.html#Shell-Commands)
 
-## 贡献者
+## Contributors
 
-xmj
+Xmj
+
 

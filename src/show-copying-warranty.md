@@ -1,8 +1,8 @@
-# 显示gdb版权相关信息
+# Display gdb copyright related information
 
 
-## 技巧
-使用gdb时，如果想查看gdb版权相关信息，可以使用“`show copying`”命令:  
+## Tips
+When using gdb, if you want to view gdb copyright related information, you can use the `show copying` command:
 
 	(gdb) show copying
                     GNU GENERAL PUBLIC LICENSE
@@ -24,7 +24,7 @@
 	software for all its use
 	......
 
-或者“`show warranty`”命令：
+Or the `show warranty` command:
 
 	(gdb) show warranty
 	  15. Disclaimer of Warranty.
@@ -59,9 +59,9 @@
 	Program, unless a warranty or assumption of liability accompanies a
 	copy of the Program in return for a fee.
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Help.html#index-GDB-version-number)。
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Help.html#index-GDB-version-number).
 
-## 贡献者
+## Contributor
 
 nanxiao
 

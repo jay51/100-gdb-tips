@@ -1,38 +1,41 @@
-# 配置gdb init文件 
+#Configure gdb init file
 
-## 技巧
+##Tips
 
-当gdb启动时，会读取HOME目录和当前目录下的的配置文件，执行里面的命令。这个文件通常为“.gdbinit”。
+When gdb starts, it will read the configuration files in the HOME directory and the current directory, and execute the commands inside. This file is usually ".gdbinit".
 
-这里给出了本文档中介绍过的，可以放在“.gdbinit”中的一些配置：
+Here are some of the configurations that can be placed in ".gdbinit" as described in this document:
 
-	# 打印STL容器中的内容
-	python
-	import sys
-	sys.path.insert(0, "/home/xmj/project/gcc-trunk/libstdc++-v3/python")
-	from libstdcxx.v6.printers import register_libstdcxx_printers
-	register_libstdcxx_printers (None)
-	end
-	
-	# 保存历史命令
-	set history filename ~/.gdb_history
-	set history save on
-	
-	# 退出时不显示提示信息
-	set confirm off
-	
-	# 按照派生类型打印对象
-	set print object on
-	
-	# 打印数组的索引下标
-	set print array-indexes on
-	
-	# 每行打印一个结构体成员
-	set print pretty on
+```
+# Print the contents of the STL container
+Python
+Import sys
+Sys.path.insert(0, "/home/xmj/project/gcc-trunk/libstdc++-v3/python")
+From libstdcxx.v6.printers import register_libstdcxx_printers
+Register_libstdcxx_printers (None)
+End
 
-欢迎补充。
+#Save history command
+Set history filename ~/.gdb_history
+Set history save on
 
-## 贡献者
+# Do not display prompt information when exiting
+Set confirm off
 
-xmj
+# Print objects by derived type
+Set print object on
+
+# print index index subscript
+Set print array-indexes on
+
+#Print one structure member per line
+Set print pretty on
+```
+
+Welcome to add.
+
+##Contributors
+
+Xmj
+
 

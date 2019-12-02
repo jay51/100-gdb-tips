@@ -1,67 +1,77 @@
-# 信号发生时是否把信号丢给程序处理
-## 例子
-	#include <stdio.h>
-	#include <signal.h>
-	
-	void handler(int sig);
-	
-	void handler(int sig)
-	{
-	        signal(sig, handler);
-	        printf("Receive signal: %d\n", sig);
-	}
-	
-	int main(void) {
-	        signal(SIGHUP, handler);
-	        
-	        while (1)
-	        {
-	                sleep(1);
-	        }
-	        return 0;
-	}
+#When the signal occurs, whether to throw the signal to the program processing
 
-## 技巧
-用gdb调试程序时，可以用“`handle signal pass(noignore)/nopass(ignore)`”命令设置当信号发生时，是否把信号丢给程序处理.其中`pass`和`noignore`含义相同，`nopass`和`ignore`含义相同。以上面程序为例:  
+## example
 
-	(gdb) i signals 
-	Signal        Stop      Print   Pass to program Description
-	
-	SIGHUP        Yes       Yes     Yes             Hangup
-	......
+```
+#include <stdio.h>
+#include <signal.h>
 
-	(gdb) r
-	Starting program: /data1/nan/test 
-	[Thread debugging using libthread_db enabled]
-	[New Thread 1 (LWP 1)]
-	
-	Program received signal SIGHUP, Hangup.
-	[Switching to Thread 1 (LWP 1)]
-	0xfeeeae55 in ___nanosleep () from /lib/libc.so.1
-	(gdb) c
-	Continuing.
-	Receive signal: 1
+Void handler(int sig);
 
-可以看到，默认情况下，发生`SIGHUP`信号时，gdb会把信号丢给程序处理。
+Void handler(int sig)
+{
+Signal(sig, handler);
+Printf("Receive signal: %d\n", sig);
+}
 
-接下来用“`handle SIGHUP nopass`”命令设置当`SIGHUP`信号发生时，gdb不把信号丢给程序处理，执行如下：
+Int main(void) {
+Signal(SIGHUP, handler);
 
-	(gdb) handle SIGHUP nopass
-	Signal        Stop      Print   Pass to program Description
-	SIGHUP        Yes       Yes     No              Hangup
-	(gdb) c
-	Continuing.
-	
-	Program received signal SIGHUP, Hangup.
-	0xfeeeae55 in ___nanosleep () from /lib/libc.so.1
-	(gdb) c
-	Continuing.
-可以看到，`SIGHUP`信号发生时，程序没有打印“Receive signal: 1”，说明gdb没有把信号丢给程序处理。
+While (1)
+{
+Sleep(1);
+}
+Return 0;
+}
+```
 
-如果想恢复之前的行为，用“`handle SIGHUP pass`”命令即可。
+## Tips
+When debugging a program with gdb, you can use the "`handle signal pass(noignore)/nopass(ignore)`"" command to set whether the signal is thrown to the program when the signal occurs. The meanings of `pass` and `noignore` are the same. Nopass` and `ignore` have the same meaning. Take the above program as an example:
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Signals.html).
+```
+(gdb) i signals
+Signal Stop Print Pass to program Description
 
-## 贡献者
+SIGHUP Yes Yes Yes Hangup
+......
 
-nanxiao
+(gdb) r
+Starting program: /data1/nan/test
+[Thread debugging using libthread_db enabled]
+[New Thread 1 (LWP 1)]
+
+Program received signal SIGHUP, Hangup.
+[Switching to Thread 1 (LWP 1)]
+0xfeeeae55 in ___nanosleep () from /lib/libc.so.1
+(gdb) c
+Continuing.
+Receive signal: 1
+```
+
+As you can see, by default, when the `SIGHUP` signal occurs, gdb will throw the signal to the program.
+
+Next, use the "`handle SIGHUP nopass`" command to set when the `SIGHUP` signal occurs, gdb does not throw the signal to the program, as follows:
+
+```
+(gdb) handle SIGHUP nopass
+Signal Stop Print Pass to program Description
+SIGHUP Yes Yes No Hangup
+(gdb) c
+Continuing.
+
+Program received signal SIGHUP, Hangup.
+0xfeeeae55 in ___nanosleep () from /lib/libc.so.1
+(gdb) c
+Continuing.
+
+It can be seen that when the `SIGHUP` signal occurs, the program does not print "Receive signal: 1", indicating that gdb does not throw the signal to the program.
+```
+
+If you want to restore the previous behavior, use the "`handle SIGHUP pass`" command.
+
+See the [gdb manual](https://sourceware.org/gdb/onlinedocs/gdb/Signals.html).
+
+##Contributors
+
+Nanxiao
+

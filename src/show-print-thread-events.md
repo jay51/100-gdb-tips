@@ -1,5 +1,5 @@
-# 不显示线程启动和退出信息
-## 例子
+# Do not display thread startup and exit information
+## Examples
 	#include <stdio.h>
 	#include <pthread.h>
 	
@@ -20,8 +20,8 @@
 	}
 
 
-## 技巧
-默认情况下，gdb检测到有线程产生和退出时，会打印提示信息，以上面程序为例:  
+## Tips
+By default, when gdb detects that a thread is created and exits, it will print a prompt message. Take the above program as an example:
 
 	(gdb) r
 	Starting program: /data/nan/a
@@ -35,7 +35,7 @@
 	[New Thread 3        ]
 
 
-如果不想显示这些信息，可以使用“`set print thread-events off`”命令，这样当有线程产生和退出时，就不会打印提示信息：
+If you don&#39;t want to display this information, you can use &quot;` set print thread-events off` &quot;command, so that when a thread is created and exited, the prompt message will not be printed:
 
     (gdb) set print thread-events off
 	(gdb) r
@@ -44,10 +44,10 @@
 
 
 
-可以看到不再打印相关信息。
+You can see that the relevant information is no longer printed.
 
-这个命令有些平台不支持，使用时需注意。参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
+This command is not supported on some platforms, please pay attention when using it. See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

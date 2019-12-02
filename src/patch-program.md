@@ -1,117 +1,126 @@
-# 修改被调试程序的二进制文件
+#Modify the binary of the debugged program
 
-## 例子
+##example
 
-	#include <stdio.h>
-	#include <stdlib.h>
-	
-	void drawing (int n)
-	{
-	  if (n != 0)
-	    puts ("Try again?\nAll you need is a dollar, and a dream.");
-	  else
-	    puts ("You win $3000!");
-	}
-	
-	int main (void)
-	{
-	  int n;
-	
-	  srand (time (0));
-	  n = rand () % 10;
-	  printf ("Your number is %d\n", n);
-	  drawing (n);
-	
-	  return 0;
-	}
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-## 技巧
+Void drawing (int n)
+{
+If (n != 0)
+Puts ("Try again?\nAll you need is a dollar, and a dream.");
+Else
+Puts ("You win $3000!");
+}
 
-gdb不仅可以用来调试程序，还可以修改程序的二进制代码。
+Int main (void)
+{
+Int n;
 
-缺省情况下，gdb是以只读方式加载程序的。可以通过命令行选项指定为可写：
+Srand (time (0));
+n = rand () % 10;
+Printf ("Your number is %d\n", n);
+Drawing (n);
 
-	$ gcc -write ./a.out
-	(gdb) show write
-	Writing into executable and core files is on.
+Return 0;
+}
+```
 
-也可以在gdb中，使用命令设置并重新加载程序：
+## Tips
 
-	(gdb) set write on
-	(gdb) file ./a.out
+Gdb can be used not only to debug programs, but also to modify the program's binary code.
 
-接下来，查看反汇编：
+By default, gdb loads programs programmatically. Can be specified as writable by command line options:
 
-	(gdb) disassemble /mr drawing 
-	Dump of assembler code for function drawing:
-	5	{
-	   0x0000000000400642 <+0>:	55	push   %rbp
-	   0x0000000000400643 <+1>:	48 89 e5	mov    %rsp,%rbp
-	   0x0000000000400646 <+4>:	48 83 ec 10	sub    $0x10,%rsp
-	   0x000000000040064a <+8>:	89 7d fc	mov    %edi,-0x4(%rbp)
-	
-	6	  if (n != 0)
-	   0x000000000040064d <+11>:	83 7d fc 00	cmpl   $0x0,-0x4(%rbp)
-	   0x0000000000400651 <+15>:	74 0c	je     0x40065f <drawing+29>
-	
-	7	    puts ("Try again?\nAll you need is a dollar, and a dream.");
-	   0x0000000000400653 <+17>:	bf e0 07 40 00	mov    $0x4007e0,%edi
-	   0x0000000000400658 <+22>:	e8 b3 fe ff ff	callq  0x400510 <puts@plt>
-	   0x000000000040065d <+27>:	eb 0a	jmp    0x400669 <drawing+39>
-	
-	8	  else
-	9	    puts ("You win $3000!");
-	   0x000000000040065f <+29>:	bf 12 08 40 00	mov    $0x400812,%edi
-	   0x0000000000400664 <+34>:	e8 a7 fe ff ff	callq  0x400510 <puts@plt>
-	
-	10	}
-	   0x0000000000400669 <+39>:	c9	leaveq 
-	   0x000000000040066a <+40>:	c3	retq   
-	
-	End of assembler dump.
+```
+$ gcc -write ./a.out
+(gdb) show write
+Writing into executable and core files is on.
+```
 
-修改二进制代码（注意大小端和指令长度）：
+You can also use the command to set and reload the program in gdb:
 
-	(gdb) set variable *(short*)0x400651=0x0ceb
-	(gdb) disassemble /mr drawing 
-	Dump of assembler code for function drawing:
-	5	{
-	   0x0000000000400642 <+0>:	55	push   %rbp
-	   0x0000000000400643 <+1>:	48 89 e5	mov    %rsp,%rbp
-	   0x0000000000400646 <+4>:	48 83 ec 10	sub    $0x10,%rsp
-	   0x000000000040064a <+8>:	89 7d fc	mov    %edi,-0x4(%rbp)
-	
-	6	  if (n != 0)
-	   0x000000000040064d <+11>:	83 7d fc 00	cmpl   $0x0,-0x4(%rbp)
-	   0x0000000000400651 <+15>:	eb 0c	jmp    0x40065f <drawing+29>
-	
-	7	    puts ("Try again?\nAll you need is a dollar, and a dream.");
-	   0x0000000000400653 <+17>:	bf e0 07 40 00	mov    $0x4007e0,%edi
-	   0x0000000000400658 <+22>:	e8 b3 fe ff ff	callq  0x400510 <puts@plt>
-	   0x000000000040065d <+27>:	eb 0a	jmp    0x400669 <drawing+39>
-	
-	8	  else
-	9	    puts ("You win $3000!");
-	   0x000000000040065f <+29>:	bf 12 08 40 00	mov    $0x400812,%edi
-	   0x0000000000400664 <+34>:	e8 a7 fe ff ff	callq  0x400510 <puts@plt>
-	
-	10	}
-	   0x0000000000400669 <+39>:	c9	leaveq 
-	   0x000000000040066a <+40>:	c3	retq   
-	
-	End of assembler dump.
+```
+(gdb) set write on
+(gdb) file ./a.out
+```
 
-可以看到，条件跳转指令“je”已经被改为无条件跳转“jmp”了。
+Next, look at the disassembly:
 
-退出，运行一下：
+```
+(gdb) disassemble /mr drawing
+Dump of assembler code for function drawing:
+5 {
+0x0000000000400642 <+0>: 55 push %rbp
+0x0000000000400643 <+1>: 48 89 e5 mov %rsp, %rbp
+0x0000000000400646 <+4>: 48 83 ec 10 sub $0x10, %rsp
+0x000000000040064a <+8>: 89 7d fc mov %edi, -0x4 (%rbp)
 
-	$ ./a.out 
-	Your number is 2
-	You win $3000!
+6 if (n != 0)
+0x000000000040064d <+11>: 83 7d fc 00 cmpl $0x0, -0x4 (%rbp)
+0x0000000000400651 <+15>: 74 0c je 0x40065f <drawing+29>
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Patching.html#Patching)
+7 puts ("Try again?\nAll you need is a dollar, and a dream.");
+0x0000000000400653 <+17>: bf e0 07 40 00 mov $0x4007e0, %edi
+0x0000000000400658 <+22>: e8 b3 fe ff ff callq 0x400510 <puts@plt>
+0x000000000040065d <+27>: eb 0a jmp 0x400669 <drawing+39>
 
-## 贡献者
+8 else
+9 puts ("You win $3000!");
+0x000000000040065f <+29>: bf 12 08 40 00 mov $0x400812,%edi
+0x0000000000400664 <+34>: e8 a7 fe ff ff callq 0x400510 <puts@plt>
 
-xmj
+10 }
+0x0000000000400669 <+39>: c9 leaveq
+0x000000000040066a <+40>: c3 retq
+
+End of assembler dump.
+
+Modify the binary code (note the size and length of the instruction):
+
+(gdb) set variable *(short*)0x400651=0x0ceb
+(gdb) disassemble /mr drawing
+Dump of assembler code for function drawing:
+5 {
+0x0000000000400642 <+0>: 55 push %rbp
+0x0000000000400643 <+1>: 48 89 e5 mov %rsp, %rbp
+0x0000000000400646 <+4>: 48 83 ec 10 sub $0x10, %rsp
+0x000000000040064a <+8>: 89 7d fc mov %edi, -0x4 (%rbp)
+
+6 if (n != 0)
+0x000000000040064d <+11>: 83 7d fc 00 cmpl $0x0, -0x4 (%rbp)
+0x0000000000400651 <+15>: eb 0c jmp 0x40065f <drawing+29>
+
+7 puts ("Try again?\nAll you need is a dollar, and a dream.");
+0x0000000000400653 <+17>: bf e0 07 40 00 mov $0x4007e0, %edi
+0x0000000000400658 <+22>: e8 b3 fe ff ff callq 0x400510 <puts@plt>
+0x000000000040065d <+27>: eb 0a jmp 0x400669 <drawing+39>
+
+8 else
+9 puts ("You win $3000!");
+0x000000000040065f <+29>: bf 12 08 40 00 mov $0x400812,%edi
+0x0000000000400664 <+34>: e8 a7 fe ff ff callq 0x400510 <puts@plt>
+
+10 }
+0x0000000000400669 <+39>: c9 leaveq
+0x000000000040066a <+40>: c3 retq
+
+End of assembler dump.
+```
+
+It can be seen that the conditional jump instruction "je" has been changed to the unconditional jump "jmp".
+
+Exit, run it:
+
+$ ./a.out
+Your number is 2
+You win $3000!
+
+See the [gdb manual](https://sourceware.org/gdb/onlinedocs/gdb/Patching.html#Patching)for details
+
+## Contributors
+
+Xmj
+
 

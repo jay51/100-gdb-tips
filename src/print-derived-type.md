@@ -1,6 +1,6 @@
-# 按照派生类型打印对象
+# Print objects by derived type
 
-## 例子
+## Examples
 
 	#include <iostream>
 	using namespace std;
@@ -38,9 +38,9 @@
 	  return 0;
 	}
 
-## 技巧
+## Tips
 
-在gdb中，当打印一个对象时，缺省是按照声明的类型进行打印：
+In gdb, when printing an object, the default is to print according to the declared type:
 
 	(gdb) frame
 	#0  drawShape (p=...) at object.cxx:25
@@ -48,14 +48,14 @@
 	(gdb) p p
 	$1 = (Shape &) @0x7fffffffde90: {_vptr.Shape = 0x400a80 <vtable for Circle+16>}
 
-在这个例子中，p虽然声明为class Shape，但它实际的派生类型可能为class Circle和Square。如果要缺省按照派生类型进行打印，则可以通过如下命令进行设置：
+In this example, although p is declared as a class shape, its actual derived types may be class Circle and Square. If you want to print by derived type by default, you can set it by the following command:
 
 	(gdb) set print object on
 
 	(gdb) p p
 	$2 = (Circle &) @0x7fffffffde90: {<Shape> = {_vptr.Shape = 0x400a80 <vtable for Circle+16>}, radius = 1}
 
-当打印对象类型信息时，该设置也会起作用：
+This setting also works when printing object type information:
 
 	(gdb) whatis p
 	type = Shape &
@@ -76,9 +76,9 @@
 	    virtual void draw(void);
 	} &
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Print-Settings.html#index-set-print)
+See [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Print-Settings.html#index-set-print)
 
-## 贡献者
+## Contributor
 
 xmj
 

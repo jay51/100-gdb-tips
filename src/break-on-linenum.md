@@ -1,59 +1,64 @@
-# 在文件行号上打断点
+#Break the point on the file line number
 
-## 例子
+##example
 
-	/* a/file.c */
-	#include <stdio.h>
-	
-	void print_a (void)
-	{
-	  puts ("a");
-	}
-	
-	/* b/file.c */
-	#include <stdio.h>
-	
-	void print_b (void)
-	{
-	  puts ("b");
-	}
-	
-	/* main.c */
-	extern void print_a(void);
-	extern void print_b(void);
-	
-	int main(void)
-	{
-	  print_a();
-	  print_b();
-	  return 0;
-	}
+```
+/* a/file.c */
+#include <stdio.h>
 
-## 技巧
+Void print_a (void)
+{
+Puts ("a");
+}
 
-这个比较简单，如果要在当前文件中的某一行打断点，直接`b linenum`即可，例如：
+/* b/file.c */
+#include <stdio.h>
 
-	(gdb) b 7
+Void print_b (void)
+{
+Puts ("b");
+}
 
-也可以显式指定文件，`b file:linenum`例如：
+/* main.c */
+Extern void print_a(void);
+Extern void print_b(void);
 
-	(gdb) b file.c:6
-	Breakpoint 1 at 0x40053b: file.c:6. (2 locations)
-	(gdb) i breakpoints 
-	Num     Type           Disp Enb Address            What
-	1       breakpoint     keep y   <MULTIPLE>         
-	1.1                         y     0x000000000040053b in print_a at a/file.c:6
-	1.2                         y     0x000000000040054b in print_b at b/file.c:6
+Int main(void)
+{
+Print_a();
+Print_b();
+Return 0;
+}
+```
 
-可以看出，gdb会对所有匹配的文件设置断点。你可以通过指定（部分）路径，来区分相同的文件名：
+##Tips
 
-	(gdb) b a/file.c:6
+This is relatively simple, if you want to break a line in the current file, you can directly `b linenum`, for example:
+ 
+```
+(gdb) b 7
 
-注意：通过行号进行设置断点的一个弊端是，如果你更改了源程序，那么之前设置的断点就可能不是你想要的了。
+You can also explicitly specify the file, `b file:linenum` for example:
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Specify-Location.html#Specify-Location)
+(gdb) b file.c:6
+Breakpoint 1 at 0x40053b: file.c:6. (2 locations)
+(gdb) i breakpoints
+Num Type Disp Enb Address What
+1 breakpoint keep y <MULTIPLE>
+1.1 y 0x000000000040053b in print_a at a/file.c:6
+1.2 y 0x000000000040054b in print_b at b/file.c:6
 
-## 贡献者
+As you can see, gdb sets breakpoints for all matching files. You can distinguish the same file name by specifying a (partial) path:
 
-xmj
+(gdb) b a/file.c:6
+```
+
+Note: One of the drawbacks of setting a breakpoint with a line number is that if you change the source program, the previously set breakpoint may not be what you want.
+
+See the [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Specify-Location.html#Specify-Location)
+
+##Contributors
+
+Xmj
+
 

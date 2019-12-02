@@ -1,58 +1,59 @@
-# 使用断点命令改变程序的执行
+#Use the breakpoint command to change the execution of the program
 
-## 例子
+##example
 
-	#include <stdio.h>
-	#include <stdlib.h>
-	
-	void drawing (int n)
-	{
-	  if (n != 0)
-	    puts ("Try again?\nAll you need is a dollar, and a dream.");
-	  else
-	    puts ("You win $3000!");
-	}
-	
-	int main (void)
-	{
-	  int n;
-	
-	  srand (time (0));
-	  n = rand () % 10;
-	  printf ("Your number is %d\n", n);
-	  drawing (n);
-	
-	  return 0;
-	}
+```
+#include <stdio.h>
+#include <stdlib.h>
 
-## 技巧
+Void drawing (int n) {
+If (n != 0)
+Puts ("Try again?\nAll you need is a dollar, and a dream.");
+Else
+Puts ("You win $3000!");
+}
 
-这个例子程序可能不太好，只是可以用来演示下断点命令的用法：
+Int main (void) {
+Int n;
 
-	(gdb) b drawing
-	Breakpoint 1 at 0x40064d: file win.c, line 6.
-	(gdb) command 1
-	Type commands for breakpoint(s) 1, one per line.
-	End with a line saying just "end".
-	>silent
-	>set variable n = 0
-	>continue
-	>end
-	(gdb) r
-	Starting program: /home/xmj/tmp/a.out 
-	[Thread debugging using libthread_db enabled]
-	Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
-	Your number is 6
-	You win $3000!
-	[Inferior 1 (process 4134) exited normally]
+Srand (time (0));
+n = rand () % 10;
+Printf ("Your number is %d\n", n);
+Drawing (n);
 
-可以看到，当程序运行到断点处，会自动把变量n的值修改为0，然后继续执行。
+Return 0;
+}
+```
 
-如果你在调试一个大程序，重新编译一次会花费很长时间，比如调试编译器的bug，那么你可以用这种方式在gdb中先实验性的修改下试试，而不需要修改源码，重新编译。
+##Tips
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Break-Commands.html#Break-Commands)
+This example program may not be very good, just to demonstrate the use of breakpoint commands:
 
-## 贡献者
+```
+(gdb) b drawing
+Breakpoint 1 at 0x40064d: file win.c, line 6.
+(gdb) command 1
+Type commands for breakpoint(s) 1, one per line.
+End with a line saying just "end".
+>silent
+>set variable n = 0
+>continue
+>end
+(gdb) r
+Starting program: /home/xmj/tmp/a.out
+[Thread debugging using libthread_db enabled]
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Your number is 6
+You win $3000!
+[Inferior 1 (process 4134) exited normally]
+```
 
-xmj
+It can be seen that when the program runs to the breakpoint, the value of the variable n is automatically changed to 0 and then continues.
 
+If you are debugging a large program, it will take a long time to recompile it, such as debugging the compiler bug, then you can try this in the gdb first experimental modification without modifying the source code. Compile.
+
+See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Break-Commands.html#Break-Commands)for details 
+
+##Contributors
+
+Xmj

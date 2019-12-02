@@ -1,6 +1,6 @@
-# 调试子进程 
+# Debug child process
 
-## 例子
+## Examples
 
 	#include <stdio.h>
 	#include <sys/types.h>
@@ -23,9 +23,9 @@
 	}
 
 
-## 技巧
+## Tips
 
-在调试多进程程序时，gdb默认会追踪父进程。例如：
+When debugging multi-process programs, gdb tracks the parent process by default. E.g:
 
 	(gdb) start
 	Temporary breakpoint 1 at 0x40055c: file a.c, line 8.
@@ -47,9 +47,9 @@
 	
 
 
-可以看到程序执行到第15行：父进程退出。 
+You can see that the program executes to line 15: the parent process exits.
 
-如果要调试子进程，要使用如下命令：“set follow-fork-mode child”，例如：
+To debug a child process, use the following command: &quot;set follow-fork-mode child&quot;, for example:
 
 	(gdb) set follow-fork-mode child
 	(gdb) start
@@ -71,11 +71,11 @@
 	18              return 0;
 
 
-可以看到程序执行到第17行：子进程打印“hello world”。 
+You can see that the program executes to line 17: the child process prints &quot;hello world&quot;.
 
-这个命令目前Linux支持，其它很多操作系统都不支持，使用时请注意。参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Forks.html)
+This command is currently supported by Linux and not supported by many other operating systems. Please pay attention when using it. See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Forks.html)
 
-## 贡献者
+## Contributor
 
 nanxiao
 

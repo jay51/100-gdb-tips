@@ -1,5 +1,5 @@
-# 查看信号处理信息
-## 例子
+# View signal processing information
+## Examples
 	#include <stdio.h>
 	#include <signal.h>
 	
@@ -22,8 +22,8 @@
 	        return 0;
 	}
 
-## 技巧
-用gdb调试程序时，可以用“`i signals`”命令（或者“`i handle`”命令，`i`是`info`命令缩写）查看gdb如何处理进程收到的信号:  
+## Tips
+When debugging a program with gdb, you can use the &quot;` i signals` &quot;command (or&quot; `i handle`&quot; command, where `i` is the abbreviation of the` info` command) to see how gdb handles signals received by the process:
 
 	(gdb) i signals 
 	Signal        Stop      Print   Pass to program Description
@@ -35,15 +35,15 @@
 	SIGALRM       No        No      Yes             Alarm clock
 	......
 
-第一项（`Signal`）：标示每个信号。  
-第二项（`Stop`）：表示被调试的程序有对应的信号发生时，gdb是否会暂停程序。  
-第三项（`Print`）：表示被调试的程序有对应的信号发生时，gdb是否会打印相关信息。  
-第四项（`Pass to program`）：gdb是否会把这个信号发给被调试的程序。  
-第五项（`Description`）：信号的描述信息。
+The first item (`Signal`): Mark each signal.
+The second item (`Stop`): indicates whether gdb will suspend the program when the signal being debugged has a corresponding signal.
+The third item (`Print`): indicates whether gdb will print related information when the debugged program has a corresponding signal.
+The fourth item (`Pass to program`): Whether gdb will send this signal to the program being debugged.
+The fifth item (`Description`): description information of the signal.
 
-从上面的输出可以看到，当`SIGINT`信号发生时，gdb会暂停被调试的程序，并打印相关信息，但不会把这个信号发给被调试的程序。而当`SIGALRM`信号发生时，gdb不会暂停被调试的程序，也不打印相关信息，但会把这个信号发给被调试的程序。  
+From the output above, you can see that when the `SIGINT` signal occurs, gdb will suspend the program being debugged and print relevant information, but it will not send this signal to the program being debugged. When the `SIGALRM` signal occurs, gdb will not suspend the program being debugged, nor print related information, but will send this signal to the program being debugged.
 
-启动gdb调试上面的程序，同时另起一个终端，先后发送`SIGINT`和`SIGALRM`信号给被调试的进程，输出如下：  
+Start gdb to debug the above program, and start another terminal at the same time, and send `SIGINT` and` SIGALRM` signals to the process being debugged. The output is as follows:
 
 	Program received signal SIGINT, Interrupt.
 	0xfeeeae55 in ___nanosleep () from /lib/libc.so.1
@@ -51,11 +51,11 @@
 	Continuing.
 	Receive signal: 14
 
-可以看到收到`SIGINT`时，程序暂停了，也输出了信号信息，但并没有把`SIGINT`信号交由进程处理（程序没有输出）。而收到`SIGALRM`信号时，程序没有暂停，也没有输出信号信息，但把`SIGALRM`信号交由进程处理了（程序打印了输出）。
+It can be seen that when the `SIGINT` is received, the program is suspended and the signal information is also output, but the` SIGINT` signal is not passed to the process for processing (the program does not output). When receiving the `SIGALRM` signal, the program did not pause and did not output signal information, but the` SIGALRM` signal was passed to the process for processing (the program printed the output).
 
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Signals.html).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Signals.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

@@ -1,42 +1,50 @@
-# 直接执行函数
-## 例子
-	#include <stdio.h>
+#Direct execution function
 
-	int global = 1;
-	
-	int func(void) 
-	{
-		return (++global);
-	}
-	
-	int main(void)
-	{
-		printf("%d\n", global);
-		return 0;
-	}
+##example
+
+```
+#include <stdio.h>
+
+Int global = 1;
+
+Int func(void)
+{
+Return (++global);
+}
+
+Int main(void)
+{
+Printf("%d\n", global);
+Return 0;
+}
+ ```
 
 
 
-## 技巧
-使用gdb调试程序时，可以使用“`call`”或“`print`”命令直接调用函数执行。以上面程序为例：  
+## Tips
+When using the gdb debugger, you can call the function directly using the "`call`" or "`print`" command. Take the above program as an example:
  
-	(gdb) start
-	Temporary breakpoint 1 at 0x4004e3: file a.c, line 12.
-	Starting program: /data2/home/nanxiao/a
-	
-	Temporary breakpoint 1, main () at a.c:12
-	12              printf("%d\n", global);
-	(gdb) call func()
-	$1 = 2
-	(gdb) print func()
-	$2 = 3
-	(gdb) n
-	3
-	13              return 0;
+ ```
+ (gdb) start
+ Temporary breakpoint 1 at 0x4004e3: file a.c, line 12.
+ Starting program: /data2/home/nanxiao/a
 
-可以看到执行两次`func`函数后，`global`的值变成`3`。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Calling.html).
+ Temporary breakpoint 1, main () at a.c:12
+ 12 printf("%d\n", global);
+ (gdb) call func()
+ $1 = 2
+ (gdb) print func()
+ $2 = 3
+ (gdb) n
+ 3
+ 13 return 0;
+ ```
 
-## 贡献者
+ It can be seen that after executing the `func` function twice, the value of `global` becomes `3`.
+ See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Calling.html).
 
-nanxiao
+ ##Contributors
+
+ Nanxiao
+
+

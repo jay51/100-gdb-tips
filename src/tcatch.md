@@ -1,49 +1,57 @@
-# 让catchpoint只触发一次
-## 例子
-	#include <stdio.h>
-	#include <stdlib.h>
-	#include <sys/types.h>
-	#include <unistd.h>
-	
-	int main(void) {
-	    pid_t pid;
-	    int i = 0;
-	
-	    for (i = 0; i < 2; i++)
-	    {
-		    pid = fork();
-		    if (pid < 0)
-		    {
-		        exit(1);
-		    }
-		    else if (pid == 0)
-		    {
-		        exit(0);
-		    }
-	    }
-	    printf("hello world\n");
-	    return 0;
-	}
+#Let catchpoint only trigger once
 
-## 技巧
-使用gdb调试程序时，可以用“`tcatch`”命令设置`catchpoint`只触发一次，以上面程序为例：  
+##example
 
-	(gdb) tcatch fork
-	Catchpoint 1 (fork)
-	(gdb) r
-	Starting program: /home/nan/a
-	
-	Temporary catchpoint 1 (forked process 27377), 0x00000034e42acdbd in fork () from /lib64/libc.so.6
-	(gdb) c
-	Continuing.
-	hello world
-	[Inferior 1 (process 27373) exited normally]
-	(gdb) q
 
-可以看到当程序只在第一次调用`fork`时暂停。  
+```
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/types.h>
+#include <unistd.h>
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html).
+Int main(void) {
+Pid_t pid;
+Int i = 0;
 
-## 贡献者
+For (i = 0; i < 2; i++)
+{
+Pid = fork();
+If (pid < 0)
+{
+Exit(1);
+}
+Else if (pid == 0)
+{
+Exit(0);
+}
+}
+Printf("hello world\n");
+Return 0;
+}
+```
 
-nanxiao
+## Tips
+When using the gdb debugger, you can use the ``tcatch`' command to set `catchpoint` to fire only once. Take the above program as an example:
+
+```
+(gdb) tcatch fork
+Catchpoint 1 (fork)
+(gdb) r
+Starting program: /home/nan/a
+
+Temporary catchpoint 1 (forked process 27377), 0x00000034e42acdbd in fork () from /lib64/libc.so.6
+(gdb) c
+Continuing.
+Hello world
+[Inferior 1 (process 27373) exited normally]
+(gdb) q
+```
+
+You can see that the program pauses only when the `fork` is called for the first time.
+
+See the [gdb manual](https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html).
+
+##Contributors
+
+Nanxiao
+

@@ -1,6 +1,6 @@
-# 打印数组中任意连续元素值 
+# Print the value of any consecutive element in the array
 
-## 例子
+## Examples
 
 	int main(void)
 	{
@@ -13,9 +13,9 @@
 	  return 0;
 	}
 
-## 技巧
+## Tips
 
-在gdb中，如果要打印数组中任意连续元素的值，可以使用“`p array[index]@num`”命令（`p`是`print`命令的缩写）。其中`index`是数组索引（从0开始计数），`num`是连续多少个元素。以上面代码为例：
+In gdb, if you want to print the value of any consecutive element in the array, you can use the &quot;` p array [index] @ num` &quot;command (` p` is the abbreviation of the `print` command). Where `index` is the array index (counting from 0), and` num` is how many consecutive elements. Take the above code as an example:
 
 	(gdb) p array
 	$8 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31,
@@ -30,15 +30,15 @@
 	$9 = {60, 61, 62, 63, 64, 65, 66, 67, 68, 69}
 
 
-可以看到打印了`array`数组第60~69个元素的值。  
-如果要打印从数组开头连续元素的值，也可使用这个命令：“`p *array@num`”：
+You can see that the values of the 60th to 69th elements of the `array` array are printed.
+If you want to print the values of consecutive elements from the beginning of the array, you can also use this command: &quot;` p * array @ num` &quot;:
 
 	(gdb) p *array@10
 	$2 = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 
 
-详情参见[gdb手册](https://sourceware.org/gdb/current/onlinedocs/gdb/Arrays.html#Arrays)
-## 贡献者
+See [gdb manual] for details (https://sourceware.org/gdb/current/onlinedocs/gdb/Arrays.html#Arrays)
+## Contributor
 
 nanxiao
 

@@ -1,5 +1,5 @@
-# 向上或向下切换函数堆栈帧
-## 例子
+# Switch function stack frame up or down
+## Examples
 	#include <stdio.h>
 
 	int func1(int a)
@@ -27,8 +27,8 @@
 	        return 0;
 	}
 
-## 技巧
-用gdb调试程序时，当程序暂停后，可以用“`up n`”或“`down n`”命令向上或向下选择函数堆栈帧，其中`n`是层数。以上面程序为例：  
+## Tips
+When debugging a program with gdb, when the program is paused, you can use the &quot;` up n` &quot;or&quot; `down n`&quot; command to select the function stack frame up or down, where `n` is the number of layers. Take the above program as an example:
 
     (gdb) b test.c:5
 	Breakpoint 1 at 0x40053d: file test.c, line 5.
@@ -53,9 +53,9 @@
 	11              c = 2 * func1(a);
 
 
-可以看到程序断住后，先执行“`frame 2`”命令，切换到`fun3`函数。接着执行“`up 1`”命令，此时会切换到`main`函数，也就是会往外层的堆栈帧移动一层。反之，当执行“`down 2`”命令后，又会向内层堆栈帧移动二层。如果不指定`n`，则`n`默认为`1`.
+You can see that after the program is interrupted, first execute the &quot;` frame 2` &quot;command and switch to the` fun3` function. Then execute the &quot;` up 1` &quot;command, and then switch to the` main` function, that is, move one layer to the outer stack frame. Conversely, when the &quot;down 2&quot; command is executed, it will move to the inner stack frame by two layers. If `n` is not specified,` n` defaults to `1`.
 
-还有“`up-silently n`”和“`down-silently n`”这两个命令，与“`up n`”和“`down n`”命令区别在于，切换堆栈帧后，不会打印信息，仍以上面程序为例：  
+There are also two commands `up-silently n` and` down-silently n`. They differ from the commands `up n` and` down n` in that they do not print after switching stack frames. Information, still using the above program as an example:
 
     (gdb) up
 	#2  0x0000000000400586 in func3 (a=10) at test.c:18
@@ -76,10 +76,10 @@
 	 Saved registers:
 	  rbp at 0x7fffffffe590, rip at 0x7fffffffe598
 
-可以看到从`func3`切换到`main`函数堆栈帧时，并没有打印出相关信息。
+It can be seen that when switching from `func3` to` main` function stack frame, no relevant information is printed.
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Selection.html#Selection).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Selection.html#Selection).
 
-## 贡献者
+## Contributor
 
 nanxiao

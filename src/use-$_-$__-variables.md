@@ -1,5 +1,5 @@
-# 使用“$\_”和“$__”变量
-## 例子
+# Use &quot;$ \ _&quot; and &quot;$ __&quot; variables
+## Examples
 	#include <stdio.h>
 
 	int main(void)
@@ -15,8 +15,8 @@
 	        return 0;
 	}
 
-## 技巧
-"`x`"命令会把最后检查的内存地址值存在“`$_`”这个“convenience variable”中，并且会把这个地址中的内容放在“`$__`”这个“convenience variable”，以上面程序为例:
+## Tips
+The &quot;` x` &quot;command will store the last checked memory address value in the&quot; convenience variable &quot;&quot; `$ _`&quot;, and will place the contents of this address in the &quot;convenience variable&quot; &quot;` $ __ `&quot; Take the above program as an example:
 	
 	(gdb) b a.c:13
 	Breakpoint 1 at 0x4004a0: file a.c, line 13.
@@ -34,8 +34,8 @@
 	$2 = 15
 
 
-可以看到“`$_`”值为`0x7fffffffe4af`，正好是"`x`"命令检查的最后的内存地址。而“`$__`”值为`15`。  
-另外要注意有些命令（像“`info line`”和“`info breakpoint`”）会提供一个默认的地址给"`x`"命令检查，而这些命令也会把“`$_`”的值变为那个默认地址值：
+You can see that the value of &quot;` $ _` &quot;is` 0x7fffffffe4af`, which is exactly the last memory address checked by the &quot;` x` &quot;command. The &quot;` $ __ `&quot; value is `15`.
+Also note that some commands (like &quot;` info line` &quot;and&quot; `info breakpoint`&quot; will provide a default address for &quot;` x` &quot;commands to check, and these commands will also set the value of&quot; `$ _`&quot; To that default address value:
 
 	(gdb) p $_
 	$5 = (int8_t *) 0x7fffffffe4af
@@ -47,9 +47,9 @@
 	$6 = (void *) 0x4004a0 <main+44>
 
 
-可以看到使用“`info breakpoint`”命令后，“`$_`”值变为`0x4004a0`。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Vars.html).
+It can be seen that after using the &quot;` info breakpoint` &quot;command, the value of&quot; `$ _`&quot; becomes `0x4004a0`.
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Convenience-Vars.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

@@ -1,46 +1,56 @@
-# 打印ASCII和宽字符字符串
-## 例子
-	#include <stdio.h>
-	#include <wchar.h>
-	
-	int main(void)
-	{
-	        char str1[] = "abcd";
-	        wchar_t str2[] = L"abcd";
-	        
-	        return 0;
-	}
+#Print ASCII and wide character strings
 
-## 技巧
-用gdb调试程序时，可以使用“`x/s`”命令打印ASCII字符串。以上面程序为例：  
+##example
 
-    Temporary breakpoint 1, main () at a.c:6
-	6               char str1[] = "abcd";
-	(gdb) n
-	7               wchar_t str2[] = L"abcd";
-	(gdb) 
-	9               return 0;
-	(gdb) x/s str1
-	0x804779f:      "abcd"
+```
+#include <stdio.h>
+#include <wchar.h>
 
-可以看到打印出了`str1`字符串的值。
+Int main(void) {
+Char str1[] = "abcd";
+Wchar_t str2[] ​​= L"abcd";
 
-打印宽字符字符串时，要根据宽字符的长度决定如何打印。仍以上面程序为例： 
+Return 0;
+}
+```
 
-    Temporary breakpoint 1, main () at a.c:6
-	6               char str1[] = "abcd";
-	(gdb) n
-	7               wchar_t str2[] = L"abcd";
-	(gdb) 
-	9               return 0;
-	(gdb) p sizeof(wchar_t)
-	$1 = 4
-	(gdb) x/ws str2
-	0x8047788:      U"abcd"
-由于当前平台宽字符的长度为4个字节，则用“`x/ws`”命令。如果是2个字节，则用“`x/hs`”命令。
+##Tips
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Memory.html).
+When debugging a program with gdb, you can print an ASCII string using the "`x/s`" command. Take the above program as an example:
 
-## 贡献者
+```
+Temporary breakpoint 1, main () at a.c:6
+6 char str1[] = "abcd";
+(gdb) n
+7 wchar_t str2[] ​​= L"abcd";
+(gdb)
+9 return 0;
+(gdb) x/s str1
+0x804779f: "abcd"
+```
 
-nanxiao
+You can see that the value of the `str1` string is printed.
+
+When printing a wide character string, decide how to print based on the length of the wide character. Still take the above program as an example:
+
+```
+Temporary breakpoint 1, main () at a.c:6
+6 char str1[] = "abcd";
+(gdb) n
+7 wchar_t str2[] ​​= L"abcd";
+(gdb)
+9 return 0;
+(gdb) p sizeof(wchar_t)
+$1 = 4
+(gdb) x/ws str2
+0x8047788: U"abcd"
+```
+
+Since the length of the current platform wide character is 4 bytes, the "`x/ws`" command is used. If it is 2 bytes, use the "`x/hs`" command.
+
+See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Memory.html).
+
+##Contributors
+
+Nanxiao
+

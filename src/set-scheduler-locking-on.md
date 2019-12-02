@@ -1,5 +1,5 @@
-# 只允许一个线程运行
-## 例子
+# Allow only one thread to run
+## Examples
 	#include <stdio.h>
 	#include <pthread.h>
 	int a = 0;
@@ -34,8 +34,8 @@
 	}
 
 
-## 技巧
-用gdb调试多线程程序时，一旦程序断住，所有的线程都处于暂停状态。此时当你调试其中一个线程时（比如执行“`step`”，“`next`”命令），所有的线程都会同时执行。以上面程序为例:  
+## Tips
+When debugging multithreaded programs with gdb, once the program is interrupted, all threads are suspended. At this point, when you debug one of the threads (such as the &quot;` step` &quot;,&quot; `next`&quot; command), all threads will be executed simultaneously. Take the above program as an example:
 
 	(gdb) b a.c:9
 	Breakpoint 1 at 0x400580: file a.c, line 9.
@@ -64,8 +64,8 @@
 	(gdb) p b
 	$2 = 3
 
-`thread1_func`更新全局变量`a`的值，`thread2_func`更新全局变量`b`的值。我在`thread1_func`里`a++`语句打上断点，当断点第一次命中时，打印`b`的值是`0`，在单步调试`thread1_func`几次后，`b`的值变成`3`，证明在单步调试`thread1_func`时，`thread2_func`也在执行。  
-如果想在调试一个线程时，让其它线程暂停执行，可以使用“`set scheduler-locking on`”命令：
+`thread1_func` updates the value of the global variable` a`, and `thread2_func` updates the value of the global variable` b`. I put a breakpoint on the `a ++` statement in `thread1_func`. When the breakpoint hits for the first time, the value of` b` is printed as `0`. After stepping through` thread1_func` several times, the value of `b` It becomes `3`, which proves that` thread2_func` is also executed when stepping through `thread1_func`.
+If you want to suspend execution of other threads while debugging one thread, you can use the &quot;` set scheduler-locking on` &quot;command:
 
     (gdb) b a.c:9
 	Breakpoint 1 at 0x400580: file a.c, line 9.
@@ -96,12 +96,12 @@
 	(gdb) p b
 	$2 = 0
 
-可以看到在单步调试`thread1_func`几次后，`b`的值仍然为`0`，证明在在单步调试`thread1_func`时，`thread2_func`没有执行。
+It can be seen that after stepping through `thread1_func` several times, the value of` b` is still `0`, which proves that` thread2_func` was not executed when stepping through `thread1_func`.
 
-此外，“`set scheduler-locking`”命令除了支持`off`和`on`模式外（默认是`off`），还有一个`step`模式。含义是：当用"`step`"命令调试线程时，其它线程不会执行，但是用其它命令（比如"`next`"）调试线程时，其它线程也许会执行。
+In addition, the `set scheduler-locking` command supports a` step` mode in addition to the `off` and` on` modes (the default is `off`). Meaning: When you use the &quot;` step` &quot;command to debug a thread, other threads will not execute, but when you use other commands (such as&quot; `next`&quot;) to debug the thread, other threads may execute.
 
-这个命令依赖于具体操作系统的调度策略，使用时需注意。参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/All_002dStop-Mode.html#All_002dStop-Mode).
+This command depends on the scheduling strategy of the specific operating system, and you need to pay attention when using it. See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/All_002dStop-Mode.html#All_002dStop-Mode).
 
-## 贡献者
+## Contributor
 
 nanxiao

@@ -1,5 +1,5 @@
-# 信号发生时是否打印信号信息
-## 例子
+# Whether to print signal information when a signal occurs
+## Examples
 	#include <stdio.h>
 	#include <signal.h>
 	
@@ -21,8 +21,8 @@
 	        return 0;
 	}
 
-## 技巧
-用gdb调试程序时，可以用“`handle signal print/noprint`”命令设置当信号发生时，是否打印信号信息，以上面程序为例:  
+## Tips
+When debugging a program with gdb, you can use the &quot;` handle signal print / noprint` &quot;command to set whether to print signal information when a signal occurs. Take the above program as an example:
 
 	(gdb) i signals 
 	Signal        Stop      Print   Pass to program Description
@@ -42,9 +42,9 @@
 	Continuing.
 	Receive signal: 1
 
-可以看到，默认情况下，发生`SIGHUP`信号时，gdb会暂停程序的执行，并打印收到信号的信息。此时需要执行`continue`命令继续程序的执行。
+You can see that by default, when the `SIGHUP` signal occurs, gdb will suspend the execution of the program and print the information of the received signal. You need to execute the `continue` command to continue the execution of the program.
 
-接下来用“`handle SIGHUP noprint`”命令设置当`SIGHUP`信号发生时，gdb不打印信号信息，执行如下：
+Next, use the `` handle SIGHUP noprint` command to set that when the `SIGHUP` signal occurs, gdb does not print the signal information. The execution is as follows:
 
 	(gdb) handle SIGHUP noprint 
 	Signal        Stop      Print   Pass to program Description
@@ -54,12 +54,12 @@
 	[Thread debugging using libthread_db enabled]
 	Receive signal: 1
 
-需要注意的是，设置`noprint`的同时，默认也会设置`nostop`。可以看到，程序收到`SIGHUP`信号发生时，没有暂停，也没有打印信号信息。而是继续执行。
+It should be noted that when setting `noprint`,` nostop` is also set by default. It can be seen that when the program receives the `SIGHUP` signal, it does not pause and does not print signal information. Instead, it continues.
 
-如果想恢复之前的行为，用“`handle SIGHUP print`”命令即可。
+If you want to restore the previous behavior, you can use the `` handle SIGHUP print` command.
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Signals.html).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Signals.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

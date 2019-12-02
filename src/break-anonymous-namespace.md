@@ -1,6 +1,6 @@
-# 在匿名空间设置断点
+# Set a breakpoint in the anonymous space
 
-## 例子
+## Examples
 	namespace Foo
 	{
 	  void foo()
@@ -15,17 +15,17 @@
 	  }
 	}
 
-## 技巧
+## Tips
 
-在gdb中，如果要对namespace Foo中的foo函数设置断点，可以使用如下命令：
+In gdb, if you want to set a breakpoint for the foo function in namespace Foo, you can use the following command:
 
 	(gdb) b Foo::foo
 
-如果要对匿名空间中的bar函数设置断点，可以使用如下命令：
+If you want to set a breakpoint for the bar function in the anonymous space, you can use the following command:
 
 	(gdb) b (anonymous namespace)::bar
 
-## 贡献者
+## Contributor
 
 xmj
 

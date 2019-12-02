@@ -1,5 +1,5 @@
-# 打印程序进程空间信息
-## 例子
+# Print program process space information
+## Examples
 	a.c:
 	#include <stdio.h>
 	int func(int a, int b)
@@ -44,8 +44,8 @@
 	}
 
 
-## 技巧
-使用gdb调试多个进程时，可以使用“`maint info program-spaces`”打印当前所有被调试的进程信息。以上面程序为例：  
+## Tips
+When using gdb to debug multiple processes, you can use &quot;` maint info program-spaces` &quot;to print information about all currently debugged processes. Take the above program as an example:
 
 	[root@localhost nan]# gdb a
 	GNU gdb (GDB) 7.8.1
@@ -97,10 +97,10 @@
 	        Bound inferiors: ID 2 (process 15902)
 	  1    /home/nan/a       
 	        Bound inferiors: ID 1 (process 15753)
-可以看到执行“`maint info program-spaces`”命令后，打印出当前有4个`program-spaces`（编号从1到4）。另外还有每个`program-spaces`对应的程序，`inferior`编号及进程号。
+You can see that after executing the &quot;` maint info program-spaces` &quot;command, there are currently 4` program-spaces` (numbered from 1 to 4). In addition, there is a program corresponding to each `program-spaces`, an` inferior` number and a process number.
 
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-and-Programs.html).
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Inferiors-and-Programs.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

@@ -1,8 +1,8 @@
-# gdb退出时不显示提示信息
+# gdb does not display a prompt message when exiting
 
 
-## 技巧
-gdb在退出时会提示:  
+## Tips
+gdb will prompt when exiting:
 
 	A debugging session is active.
 
@@ -11,13 +11,13 @@ gdb在退出时会提示:
     Quit anyway? (y or n) n
 
 
-如果不想显示这个信息，则可以在gdb中使用如下命令把提示信息关掉:
+If you do not want to display this information, you can use the following command in gdb to turn off the prompt:
 
 	(gdb) set confirm off
 
-也可以把这个命令加到.gdbinit文件里。
+You can also add this command to the .gdbinit file.
 
-## 贡献者
+## Contributor
 
 nanxiao
 

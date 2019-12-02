@@ -1,5 +1,5 @@
-# 为exec调用设置catchpoint
-## 例子
+# Set catchpoint for exec calls
+## Examples
 	#include <unistd.h>
 	
 	int main(void) {
@@ -9,8 +9,8 @@
 
 
 
-## 技巧
-使用gdb调试程序时，可以用“`catch exec`”命令为`exec`系列系统调用设置`catchpoint`，以上面程序为例：  
+## Tips
+When using gdb to debug a program, you can use the `catch exec` command to set a catchpoint for the exec series of system calls. Take the above program as an example:
 
 	(gdb) catch exec
 	Catchpoint 1 (exec)
@@ -26,10 +26,10 @@
 	#3  0x0000000000000000 in ?? ()
 
 
-可以看到当`execl`调用发生后，gdb会暂停程序的运行。  
-注意：目前只有HP-UX和GNU/Linux支持这个功能。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html).
+You can see that when the `execl` call occurs, gdb will suspend the running of the program.
+Note: Currently only HP-UX and GNU / Linux support this feature.
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Set-Catchpoints.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

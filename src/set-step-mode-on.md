@@ -1,6 +1,6 @@
-# 进入不带调试信息的函数
+# Enter function without debugging information
 
-## 例子
+## Examples
 
 	#include <stdio.h>
 	#include <pthread.h>
@@ -22,9 +22,9 @@
 
 
 
-## 技巧
+## Tips
 
-默认情况下，gdb不会进入不带调试信息的函数。以上面代码为例：
+By default, gdb will not enter functions without debugging information. Take the above code as an example:
 
 	(gdb) n
 	15              printf("%d,%d,%d,%d\n", st.a, st.b, st.c, st.d);
@@ -33,9 +33,9 @@
 	16              return 0;
 
 	
-可以看到由于printf函数不带调试信息，所以“s”命令（s是“step”缩写）无法进入printf函数。
+It can be seen that because the printf function does not carry debugging information, the &quot;s&quot; command (s is the abbreviation of &quot;step&quot;) cannot enter the printf function.
 
-可以执行“set step-mode on”命令，这样gdb就不会跳过没有调试信息的函数：
+You can execute the &quot;set step-mode on&quot; command so that gdb does not skip functions without debugging information:
 
 	(gdb) set step-mode on
 	(gdb) n
@@ -46,11 +46,11 @@
 	0x00007ffff7a993b7 in printf () from /lib64/libc.so.6
 
 
-可以看到gdb进入了printf函数，接下来可以使用调试汇编程序的办法去调试函数。
+You can see that gdb has entered the printf function. Next, you can use the method of debugging the assembler to debug the function.
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Continuing-and-Stepping.html)
+See [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Continuing-and-Stepping.html)
 
-## 贡献者
+## Contributor
 
 nanxiao
 

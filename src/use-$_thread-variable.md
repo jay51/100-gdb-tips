@@ -1,5 +1,5 @@
-# 使用“$_thread”变量
-## 例子
+# Use &quot;$ _thread&quot; variable
+## Examples
 	#include <stdio.h>
 	#include <pthread.h>
 	
@@ -34,8 +34,8 @@
 	        return;
 	}
 
-## 技巧
-gdb从7.2版本引入了`$_thread`这个“`convenience variable`”，用来保存当前正在调试的线程号。这个变量在写断点命令或是命令脚本时会很有用。以上面程序为例:
+## Tips
+gdb introduced `$ _thread` as a` convenience variable` from version 7.2, which is used to save the thread number currently being debugged. This variable is useful when writing breakpoint commands or command scripts. Take the above program as an example:
 	
 	(gdb) wa a
 	Hardware watchpoint 2: a
@@ -45,8 +45,8 @@ gdb从7.2版本引入了`$_thread`这个“`convenience variable`”，用来保
 	>printf "thread id=%d\n", $_thread
 	>end
 
-首先设置了观察点：“wa a”（`wa`是`watch`命令缩写），也就是当`a`的值发生变化时，程序会暂停，接下来在`commands`语句中打印线程号。  
-然后继续执行程序：
+First set the observation point: &quot;wa a&quot; (`wa` is the abbreviation of` watch` command), that is, when the value of `a` changes, the program will pause, and then the thread number is printed in the` commands` statement.
+Then proceed with the program:
 
 	(gdb) c
 	Continuing.
@@ -71,9 +71,9 @@ gdb从7.2版本引入了`$_thread`这个“`convenience variable`”，用来保
 	20                      sleep(10);
 	thread id=3
 
-可以看到程序暂停时，会打印线程号：“`thread id=2`”或者“`thread id=3`”。  
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
+You can see that when the program is paused, the thread number is printed: &quot;` thread id = 2` &quot;or&quot; `thread id = 3`&quot;.
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Threads.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

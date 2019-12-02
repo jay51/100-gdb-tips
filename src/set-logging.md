@@ -1,5 +1,5 @@
-# 记录执行gdb的过程
-## 例子
+# Record the process of executing gdb
+## Examples
 	#include <stdio.h>
 	#include <wchar.h>
 	
@@ -11,8 +11,8 @@
 	        return 0;
 	}
 
-## 技巧
-用gdb调试程序时，可以使用“`set logging on`”命令把执行gdb的过程记录下来，方便以后自己参考或是别人帮忙分析。默认的日志文件是“`gdb.txt`”，也可以用“`set logging file file`”改成别的名字。以上面程序为例：  
+## Tips
+When using gdb to debug the program, you can use the &quot;` set logging on` &quot;command to record the process of executing gdb for future reference or analysis by others. The default log file is &quot;` gdb.txt` &quot;, you can also use&quot; `set logging file file`&quot; to change it to another name. Take the above program as an example:
 
     (gdb) set logging file log.txt
 	(gdb) set logging on
@@ -41,7 +41,7 @@
 	
 	Quit anyway? (y or n) y
 
-执行完后，查看log.txt文件：
+After execution, check the log.txt file:
 
 	bash-3.2# cat log.txt 
 	Temporary breakpoint 1 at 0x8050abe: file a.c, line 6.
@@ -61,11 +61,11 @@
 	        Inferior 1 [process 9931    ] will be killed.
 	
 	Quit anyway? (y or n)
-可以看到log.txt详细地记录了gdb的执行过程。
+You can see that log.txt records the execution process of gdb in detail.
 
-此外“`set logging overwrite on`”命令可以让输出覆盖之前的日志文件；而 “`set logging redirect on`”命令会让gdb的日志不会打印在终端。    
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Logging-Output.html).
+In addition, the &quot;` set logging overwrite on` &quot;command allows the output to overwrite the previous log file; and the&quot; `set logging redirect on`&quot; command will prevent gdb&#39;s logs from being printed to the terminal.
+See [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Logging-Output.html).
 
-## 贡献者
+## Contributor
 
 nanxiao

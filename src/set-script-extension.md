@@ -1,89 +1,99 @@
-# 按何种方式解析脚本文件 
+#How to parse the script file
 
-## 例子
+##example
 
-	#include <stdio.h>
+```
+#include <stdio.h>
 
-	typedef struct
-	{
-	        int a;
-	        int b;
-	        int c;
-	        int d;
-	}ex_st;
-	
-	int main(void) {
-	        ex_st st = {1, 2, 3, 4};
-	        printf("%d,%d,%d,%d\n", st.a, st.b, st.c, st.d);
-	        return 0;
-	}
+Typedef struct {
+    Int a;
+    Int b;
+    Int c;
+    Int d;
+}ex_st;
 
+Int main(void) {
+Ex_st st = {1, 2, 3, 4};
+Printf("%d,%d,%d,%d\n", st.a, st.b, st.c, st.d);
+Return 0;
+}
+```
 
+##Tips
 
-## 技巧
+There are two kinds of script files supported by gdb: one is a script that only contains gdb's own commands, such as the ".gdbinit" file. When gdb starts, it will execute the commands in the ".gdbinit" file. In addition, gdb also Support for script files written in other languages ​​(such as python).
 
-gdb支持的脚本文件分为两种：一种是只包含gdb自身命令的脚本，例如“.gdbinit”文件，当gdb在启动时，就会执行“.gdbinit”文件中的命令；此外，gdb还支持其它一些语言写的脚本文件（比如python）。  
-gdb用“`set script-extension`”命令来决定按何种格式来解析脚本文件。它可以取3个值：  
-a）`off`：所有的脚本文件都解析成gdb的命令脚本；  
-b）`soft`：根据脚本文件扩展名决定如何解析脚本。如果gdb支持解析这种脚本语言（比如python），就按这种语言解析，否则就按命令脚本解析；  
-c）`strict`：根据脚本文件扩展名决定如何解析脚本。如果gdb支持解析这种脚本语言（比如python），就按这种语言解析，否则不解析；  
-以上面程序为例，进行调试：
+Gdb uses the "`set script-extension`" command to determine which format to parse the script file. It can take 3 values:
 
-	(gdb) start
-	Temporary breakpoint 1 at 0x4004cd: file a.c, line 12.
-	Starting program: /data2/home/nanxiao/a
-	
-	Temporary breakpoint 1, main () at a.c:12
-	12              ex_st st = {1, 2, 3, 4};
-	(gdb) q
-	A debugging session is active.
-	
-	        Inferior 1 [process 24249] will be killed.
-	
-	Quit anyway? (y or n) y
+a) `off`: all script files are parsed into gdb command scripts;
 
+b) `soft`: Decide how to parse the script based on the script file extension. If gdb supports parsing this scripting language (such as python), it will parse in this language, otherwise it will be parsed by command script;
 
-可以看到gdb退出时，默认行为会提示用户是否退出。
+c) `strict`: Determines how to parse the script based on the script file extension. If gdb supports parsing this scripting language (such as python), it will parse in this language, otherwise it will not be parsed;
 
-下面写一个脚本文件（gdb.py），但内容是一个gdb命令，不是真正的python脚本。用途是退出gdb时不提示：
+Take the above program as an example to debug:
 
-	set confirm off
-再次开始调试：  
+```
+(gdb) start
+Temporary breakpoint 1 at 0x4004cd: file a.c, line 12.
+Starting program: /data2/home/nanxiao/a
 
-	(gdb) start
-	Temporary breakpoint 1 at 0x4004cd: file a.c, line 12.
-	Starting program: /data2/home/nanxiao/a
-	
-	Temporary breakpoint 1, main () at a.c:12
-	12              ex_st st = {1, 2, 3, 4};
-	(gdb) show script-extension
-	Script filename extension recognition is "soft".
-	(gdb) source gdb.py
-	  File "gdb.py", line 1
-	    set confirm off
-	              ^
-	SyntaxError: invalid syntax
+Temporary breakpoint 1, main () at a.c:12
+12 ex_st st = {1, 2, 3, 4};
+(gdb) q
+A debugging session is active.
+
+Inferior 1 [process 24249] will be killed.
+
+Quit anyway? (y or n) y
 
 
-可以看到“`script-extension`”默认值是`soft`，接下来执行“`source gdb.py`”,会按照pyhton语言解析gdb.py文件，但是由于这个文件实质上是一个gdb命令脚本，所以解析出错。  
-再执行一次：  
+You can see that when gdb exits, the default behavior will prompt the user to quit.
+```
 
-	(gdb) start
-	Temporary breakpoint 1 at 0x4004cd: file a.c, line 12.
-	Starting program: /data2/home/nanxiao/a
-	
-	Temporary breakpoint 1, main () at a.c:12
-	12              ex_st st = {1, 2, 3, 4};
-	(gdb) set script-extension off
-	(gdb) source gdb.py
-	(gdb) q
-	[root@linux:~]$
-这次把“`script-extension`”值改为`off`，所以脚本会按gdb命令脚本去解析，可以看到这次脚本命令生效了。
+Write a script file (gdb.py) below, but the content is a gdb command, not a real python script. The purpose is not to prompt when exiting gdb:
+
+```
+Set confirm off
+Start debugging again:
+
+(gdb) start
+Temporary breakpoint 1 at 0x4004cd: file a.c, line 12.
+Starting program: /data2/home/nanxiao/a
+
+Temporary breakpoint 1, main () at a.c:12
+12 ex_st st = {1, 2, 3, 4};
+(gdb) show script-extension
+Script filename extension recognition is "soft".
+(gdb) source gdb.py
+File "gdb.py", line 1
+Set confirm off
+^
+SyntaxError: invalid syntax
+
+
+You can see that the default value of `script-extension` is `soft`. Next, execute ``source gdb.py`', and the gdb.py file will be parsed according to the pyhton language, but since this file is essentially a gdb command script , so the parsing error.
+Execute again:
+
+(gdb) start
+Temporary breakpoint 1 at 0x4004cd: file a.c, line 12.
+Starting program: /data2/home/nanxiao/a
+
+Temporary breakpoint 1, main () at a.c:12
+12 ex_st st = {1, 2, 3, 4};
+(gdb) set script-extension off
+(gdb) source gdb.py
+(gdb) q
+[root@linux:~]$
+```
+
+This time, change the value of "`script-extension`" to `off`, so the script will parse it according to the gdb command script. You can see that the script command takes effect.
   
-参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Extending-GDB.html)
-## 贡献者
+See the [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Extending-GDB.html)
+## Contributors
 
-nanxiao
+Nanxiao
+
 
 
 

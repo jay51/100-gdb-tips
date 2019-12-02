@@ -1,6 +1,6 @@
-# 列出函数的名字
+# List function names
 
-## 例子
+## Examples
 
 	#include <stdio.h>
 	#include <pthread.h>
@@ -25,9 +25,9 @@
 
 
 
-## 技巧
+## Tips
 
-使用gdb调试时，使用“`info functions`”命令可以列出可执行文件的所有函数名称。以上面代码为例：
+When debugging with gdb, use the &quot;` info functions` &quot;command to list all the function names of the executable. Take the above code as an example:
 
 	(gdb) info functions
 	All defined functions:
@@ -59,9 +59,9 @@
 	0x08050a31  _fini
 
 	
-可以看到会列出函数原型以及不带调试信息的函数。
+You can see that the function prototype is listed as well as the function without debugging information.
 
-另外这个命令也支持正则表达式：“`info functions regex`”，这样只会列出符合正则表达式的函数名称，例如：
+In addition, this command also supports regular expressions: &quot;` info functions regex` &quot;, which will only list the function names that match the regular expression, for example:
 
 	(gdb) info functions thre*
 	All functions matching regular expression "thre*":
@@ -75,11 +75,11 @@
 
 
 
-可以看到gdb只会列出名字里包含“`thre`”的函数。
+You can see that gdb will only list functions whose name contains &quot;thre`&quot;.
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Symbols.html)
+See [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Symbols.html)
 
-## 贡献者
+## Contributor
 
 nanxiao
 

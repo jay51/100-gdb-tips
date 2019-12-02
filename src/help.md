@@ -1,10 +1,10 @@
-# 得到命令的帮助信息
+# Get help information for the command
 
-## 技巧
+## Tips
 
-使用`help`命令可以得到gdb的命令帮助信息：  
+Use `help` command to get gdb command help information:
 
-（1）`help`命令不加任何参数会得到命令的分类：
+(1) `help` command without any parameters will get the classification of the command:
 
 	(gdb) help
 	List of classes of commands:
@@ -27,7 +27,7 @@
 	Type "help" followed by command name for full documentation.
 	Type "apropos word" to search for commands related to "word".
 	Command name abbreviations are allowed if unambiguous.
-（2）当输入`help class`命令时，可以得到这个类别下所有命令的列表和命令功能：  
+(2) When you enter the `help class` command, you can get a list of all commands and command functions in this category:
 
 	(gdb) help data
 	Examining data.
@@ -48,7 +48,7 @@
 	dump binary memory -- Write contents of memory to a raw binary file
 	dump binary value -- Write the value of an expression to a raw binary file
 	......
-（3）也可以用`help command`命令得到某一个具体命令的用法：  
+(3) You can also use `help command` command to get the usage of a specific command:
 
 	(gdb) help mem
 	Define attributes for memory region or reset memory region handling totarget-based.
@@ -58,7 +58,7 @@
       <width> may be 8, 16, 32, or 64, and
       <cache> may be cache or nocache
 
-（4）用`apropos regexp`命令查找所有符合`regexp`正则表达式的命令信息：  
+(4) Use the `apropos regexp` command to find all command information that matches the` regexp` regular expression:
 
 	(gdb) apropos set
 	awatch -- Set a watchpoint for an expression
@@ -68,9 +68,9 @@
 	brea -- Set breakpoint at specified line or function
 	......
 
-详情参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Help.html)
+See [gdb manual] for details (https://sourceware.org/gdb/onlinedocs/gdb/Help.html)
 
-## 贡献者
+## Contributor
 
 nanxiao
 

@@ -1,6 +1,6 @@
-# 支持预处理器宏信息
+# Support preprocessor macro information
 
-## 例子
+## Examples
 
 	#include <stdio.h>
 	
@@ -12,21 +12,21 @@
 	  return 0;
 	}
 
-## 技巧
+## Tips
 
-使用`gcc -g`编译生成的程序，是不包含预处理器宏信息的：
+The program compiled with `gcc -g` does not contain preprocessor macro information:
 
 	(gdb) p NAME
 	No symbol "NAME" in current context.
 
-如果想在gdb中查看宏信息，可以使用`gcc -g3`进行编译：
+If you want to view the macro information in gdb, you can use `gcc -g3` to compile:
 
 	(gdb) p NAME
 	$1 = "Joe"
 
-关于预处理器宏的命令，参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Macros.html#Macros)
+For preprocessor macro commands, see [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Macros.html#Macros)
 
-## 贡献者
+## Contributor
 
 xmj
 

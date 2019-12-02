@@ -1,5 +1,5 @@
-# 设置读写观察点
-## 例子
+# Set read and write observation points
+## Examples
 	#include <stdio.h>
 	#include <pthread.h>
 	
@@ -34,8 +34,8 @@
 	        return;
 	}
 
-## 技巧
-gdb可以使用“`awatch`”命令设置读写观察点，也就是当发生读取变量或改变变量值的行为时，程序就会暂停住。以上面程序为例:  
+## Tips
+gdb can use the &quot;` awatch` &quot;command to set read and write watchpoints, that is, the program will halt when the behavior of reading variables or changing the value of variables occurs. Take the above program as an example:
 
 	(gdb) aw a
 	Hardware access (read/write) watchpoint 1: a
@@ -77,9 +77,9 @@ gdb可以使用“`awatch`”命令设置读写观察点，也就是当发生读
 	0x00000000004005c6 in thread1_func (p_arg=0x40076c) at a.c:10
 	10                      a++;
 
-可以看到，使用“`aw a`”命令（`aw`是`awatch`命令的缩写）以后，每次读取或改变`a`的值都会让程序停下来。  
-需要注意的是`awatch`命令只对硬件观察点才生效，参见[gdb手册](https://sourceware.org/gdb/onlinedocs/gdb/Set-Watchpoints.html).
+It can be seen that after using the `` aw a` ”command (` aw` is an abbreviation of the `awatch` command), each time the value of` a` is read or changed, the program will stop.
+It should be noted that the `awatch` command only takes effect on hardware watchpoints, see [gdb manual] (https://sourceware.org/gdb/onlinedocs/gdb/Set-Watchpoints.html).
 
-## 贡献者
+## Contributor
 
 nanxiao
