@@ -4,7 +4,7 @@ A document about using gdb tips. 100, here may just indicate a lot; the exact nu
 
 ## Read online
 
-[Start reading](<https://github.com/jay51/100-gdb-tips/blob/master/src/index.md>)
+### [Start reading](<https://github.com/jay51/100-gdb-tips/blob/master/src/index.md>)
 
 ## How to participate
 
